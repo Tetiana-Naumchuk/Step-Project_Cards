@@ -2,9 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
-}
-body {
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -15,16 +12,18 @@ header{
     padding-inline: 100px;
     padding-block: 20px;
     background-color: #f0f0f0;
+    border-bottom: 0.2px solid #cecece;
 }
 
 .img-logo{
-    height: 70px;
-    width: 70px;
+    height: 72px;
+    width: 72px;
     border-radius: 8px;
-    border: 1px solid gray;
+    border: 0.2px solid #cecece;
 }
 
 button{
+    font-weight: 500;
     color: #696969;
     background-color: #fffafa;
     border-radius: 8px;
@@ -43,4 +42,38 @@ button:hover{
             inset -10px -10px 15px rgba(255, 255, 255, 0.5),
             inset 10px 10px 15px rgba(70, 70, 70, 0.12);
     color: #525252;
+}
+
+.form-enter{
+    position: fixed;
+    z-index: -100;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(253, 246, 246, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active-form {
+    z-index: 100;
+    opacity: 1;
+}
+
+.form-enter form{
+    background-color: rgb(232, 232, 232);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 12px 28px 0;
+    border-radius: 8px;
+    height: 400px;
+    width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 15px;
+    position: relative;
 }
