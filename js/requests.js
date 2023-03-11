@@ -15,8 +15,8 @@ export default class Requests {
         .then(response => response.text())
     }
 
-	static get(entity) {
-		return fetch(URL + entity, {
+	static get(id='') {
+		return fetch(URL + id, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
