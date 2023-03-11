@@ -1,7 +1,7 @@
 
 const URL = 'https://ajax.test-danit.com/api/v2/cards/'
 
-// const token = JSON.parse(localStorage.getItem('token'))
+const token = localStorage.getItem('token')
 
 export default class Requests {
     static enter(object) {
