@@ -44,7 +44,7 @@ button:hover{
     color: #525252;
 }
 
-.form-enter{
+.form{
     position: fixed;
     z-index: -100;
     opacity: 0;
@@ -63,7 +63,7 @@ button:hover{
     opacity: 1;
 }
 
-.form-enter form{
+.form form{
     background-color: rgb(232, 232, 232);
     box-shadow: rgba(0, 0, 0, 0.2) 0 12px 28px 0;
     border-radius: 8px;
@@ -76,4 +76,19 @@ button:hover{
     align-items: center;
     row-gap: 15px;
     position: relative;
+}
+
+.close-form {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    right: 0;
+    margin-right: 10px;
+}
+
+.close-form:hover {
+    height: 17px;
+    width: 17px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0 0 3px 0;
 }
