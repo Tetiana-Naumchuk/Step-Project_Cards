@@ -1,6 +1,8 @@
 
 const URL = 'https://ajax.test-danit.com/api/v2/cards/'
 
+// const token = JSON.parse(localStorage.getItem('token'))
+
 export default class Requests {
     static enter(object) {
         return fetch(URL+"login", {
@@ -13,7 +15,7 @@ export default class Requests {
         .then(response => response.text())
     }
 
-	static get(entity, token) {
+	static get(entity) {
 		return fetch(URL + entity, {
             method: "GET",
             headers: {
@@ -23,7 +25,7 @@ export default class Requests {
         }).then(response => response.json());
 	}
 
-    static post(object, token) {
+    static post(object) {
         return fetch(URL, {
             method: 'POST',
             headers: {
@@ -34,7 +36,7 @@ export default class Requests {
         }).then(response => response.json());
     }
 
-	static put(object, id, token) {
+	static put(object, id) {
 		return fetch(URL + id, {
 			method: "PUT",
 			headers: {
@@ -45,7 +47,7 @@ export default class Requests {
         }).then(response => response.json());
 	}
 
-	static delete(id, token) {
+	static delete(id) {
 		return fetch(URL + id, {
             method: "DELETE",
             headers: {

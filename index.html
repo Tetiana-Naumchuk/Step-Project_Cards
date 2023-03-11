@@ -12,7 +12,7 @@
 <body>
     <header>
         <img class='img-logo' src="./img/logo.png" alt="Logo">
-        <button class="enter-btn">Вход</button>
+        <button class="enter-btn btn-style">Вхід</button>
     </header>
     <main>
         <nav>
@@ -26,13 +26,18 @@
         <div class="form">
             <form>
                 <img class="close-form" src="./img/close.png" alt="">
-                <div class="inputs-wrap">
-
-                </div>
+    
             </form>
         </div>
     </template>
-
+    <template id="form_enter-filling">
+        <div class="form_enter wrap-input">
+            <h3>Введіть дані для авторизації</h3>
+            <input class="user-email" required type="email" placeholder="Електронна адреса">
+            <input class="user-password" required type="password" placeholder="Пароль">
+            <input class="btn-style submit" type="submit" value="Зареєструватися">
+        </div>
+    </template>
     <script src="./js/main.js" type="module"></script>
 </body>
 </html>
