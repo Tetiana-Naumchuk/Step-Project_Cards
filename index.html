@@ -15,11 +15,28 @@
         <button class="enter-btn btn-style">Вхід</button>
     </header>
     <main>
-        <nav>
-
-        </nav>
+        <form class="filter">
+            <input id="visit-text" type="text" placeholder="Введіть заголовок/вміст візиту">
+            <div>
+                <label for="status">Статус проведення візиту</label>
+                <select name="" id="status">
+                    <option>Всі</option>
+                    <option>Минулі візити</option>
+                    <option>Активні візити</option>
+                </select>
+            </div>
+            <div>
+                <label for="urgency">Терміновість візиту</label>
+                <select name="" id="urgency">
+                    <option>Всі</option>
+                    <option>Висока</option>
+                    <option>Середня</option>
+                    <option>Низька</option>
+                </select>
+            </div>
+            <input id="find" type="submit" value="Пошук">
+        </form>
         <div class="cards-container">
-
         </div>
     </main>
     <template id="form-template">
@@ -35,7 +52,7 @@
             <h3>Введіть дані для авторизації</h3>
             <input class="user-email" required type="email" placeholder="Електронна адреса">
             <input class="user-password" required type="password" placeholder="Пароль">
-            <input class="btn-style submit" type="submit" value="Зареєструватися">
+            <input class="submit" type="submit" value="Зареєструватися">
         </div>
     </template>
     <script src="./js/main.js" type="module"></script>
