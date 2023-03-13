@@ -3,6 +3,10 @@ import ModalCreateCard from "./modalCreateCard.js"
 
 export const btnEnter = document.querySelector('.enter-btn')
 
+if (localStorage.getItem('token')) {
+    btnEnter.textContent = 'Створити візит'
+}
+
 btnEnter.addEventListener('click', () => {
     if (btnEnter.textContent == "Вхід") {
         const modalEnter = new Modal().enter()
