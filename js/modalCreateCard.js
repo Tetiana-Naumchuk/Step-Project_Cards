@@ -52,7 +52,8 @@ export default class ModalCreateVisit {
     btnSubmit.textContent = "Створити візит";
 
     this.selectDoctor.innerHTML = ` 
-        <option value="Кардіолог" selected="selected">Кардіолог</option>
+        <option value="Лікар" selected="selected">Оберіть лікаря</option>
+        <option value="Кардіолог">Кардіолог</option>
         <option value="Стоматолог">Стоматолог</option>
         <option value="Терапевт">Терапевт</option>`;
     this.selectDoctor.classList = 'selectDoctor'
@@ -106,16 +107,16 @@ export default class ModalCreateVisit {
 
     let origins = document.createElement("select");
     origins.innerHTML = ` 
-        <option value="Обычная">Обычная</option>
-        <option value="Приоритетная">Приоритетная</option>
-        <option value="Неотложная">Неотложная</option>`;
+        <option value="Звичайна">Звичайна</option>
+        <option value="Пріорітетна">Пріорітетна</option>
+        <option value="Термінова">Термінова</option>`;
     origins.setAttribute("name", "origins");
     origins.classList = 'selectOrigins'
     origins.placeholder = "Терміновість";
 
     let description = document.createElement("input");
     description.setAttribute("name", "description");
-    description.placeholder = "Коротки опис візиту";
+    description.placeholder = "Короткий опис візиту";
 
     let purposeVisit = document.createElement("input");
     purposeVisit.setAttribute("name", "purposeVisit");
