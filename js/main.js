@@ -1,20 +1,15 @@
-import Modal from "./modal.js"
-import ModalCreateCard from "./modalCreateCard.js"
+import Modal from "./Modal.js"
 
-export const btnEnter = document.querySelector('.enter-btn')
+export const headerBtn = document.querySelector('.header-btn')
 
 if (localStorage.getItem('token')) {
-    btnEnter.textContent = 'Створити візит'
+    headerBtn.textContent = 'Створити візит'
 }
 
-btnEnter.addEventListener('click', () => {
-    if (btnEnter.textContent == "Вхід") {
-        const modalEnter = new Modal().enter()
-    document.body.prepend(modalEnter)
+headerBtn.addEventListener('click', () => {
+    if (headerBtn.textContent === "Вхід") {
+        document.body.prepend(new Modal().enter())
     } else{
-        const modalCreateCard = new ModalCreateCard()
-        document.body.prepend(modalCreateCard.render())
+        document.body.prepend(new Modal().visit())
     }
-    
-
 })

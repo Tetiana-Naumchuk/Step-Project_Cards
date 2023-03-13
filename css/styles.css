@@ -95,7 +95,7 @@ button:hover, input.submit:hover{
     box-shadow: rgba(0, 0, 0, 0.8) 0 0 3px 0;
 }
 
-.wrap-input{
+.inputs-container{
     width: 100%;
     margin: 15px;
     display: flex;
@@ -103,14 +103,15 @@ button:hover, input.submit:hover{
     row-gap: 15px;
 }
 
-.wrap-input h3{
+.inputs-container h3{
+    margin-top: 10px;
     text-align: center;
     color: #525252;
     font-size: 20px;
 }
 
-.wrap-input input{
-    font-family: 'Montserrat', sans-serif;;
+.inputs-container input, .inputs-container select{
+    font-family: 'Montserrat', sans-serif;
     font-size: 13px;
     padding: 5px;
     border: 0.2px solid #cecece;
@@ -188,45 +189,8 @@ input.submit{
     border-radius: 8px;
 }
 
-
-.createVisit{
-    position: fixed;
-    top: 50%;
-    margin: 15px;
+.additional-info{
     display: flex;
     flex-direction: column;
     row-gap: 15px;
-    left: 50%;
-    border-radius: 8px;
-    width: 450px;
-    padding: 20px;
-    justify-content: space-between;
-    align-items: center;
-    row-gap: 15px;
-    background: silver;
-    transform: translate(-50%, -50%);
-}
-
-.dopInfo{
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-}
-
-.div-createVisit{
-    z-index: 100;
-    opacity: 1;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(253, 246, 246, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.selectOrigins, .selectDoctor{
-    width: 138px;
 }
