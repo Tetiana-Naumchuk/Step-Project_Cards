@@ -1,4 +1,5 @@
 import Modal from "./modal.js"
+import ModalCreateCard from "./modalCreateCard.js"
 
 export const btnEnter = document.querySelector('.enter-btn')
 

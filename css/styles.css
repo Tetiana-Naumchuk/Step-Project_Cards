@@ -187,3 +187,46 @@ input.submit{
     border: 0.2px solid #cecece;
     border-radius: 8px;
 }
+
+
+.createVisit{
+    position: fixed;
+    top: 50%;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    left: 50%;
+    border-radius: 8px;
+    width: 450px;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 15px;
+    background: silver;
+    transform: translate(-50%, -50%);
+}
+
+.dopInfo{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.div-createVisit{
+    z-index: 100;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(253, 246, 246, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectOrigins, .selectDoctor{
+    width: 138px;
+}
