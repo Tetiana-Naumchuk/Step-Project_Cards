@@ -29,7 +29,7 @@ export default class Modal{
             Requests.enter(userData).then(token => localStorage.setItem('token', token))
             console.log(localStorage.getItem('token'));
             btnEnter.className = 'create-visit'
-            btnEnter.textContent = 'Создать визит'
+            btnEnter.textContent = 'Створити візит'
             this.formWrap.classList.remove('active-form')
         })
         return this.formWrap 
