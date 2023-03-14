@@ -1,60 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Step Project "Cards"</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/styles.css">
-</head>
-<body>
-    <header>
-        <img class='img-logo' src="./img/logo.png" alt="Logo">
-        <button class="enter-btn btn-style">Вхід</button>
-    </header>
-    <main>
-        <form class="filter">
-            <input id="visit-text" type="text" placeholder="Введіть заголовок/вміст візиту">
-            <div>
-                <label for="status">Статус проведення візиту</label>
-                <select name="" id="status">
-                    <option>Всі</option>
-                    <option>Минулі візити</option>
-                    <option>Активні візити</option>
-                </select>
-            </div>
-            <div>
-                <label for="urgency">Терміновість візиту</label>
-                <select name="" id="urgency">
-                    <option>Всі</option>
-                    <option>Висока</option>
-                    <option>Середня</option>
-                    <option>Низька</option>
-                </select>
-            </div>
-            <input id="find" type="submit" value="Пошук">
-        </form>
-        <div class="cards-container">
-        </div>
-    </main>
-    <template id="form-template">
-        <div class="form">
-            <form>
-                <img class="close-form" src="./img/close.png" alt="">
-    
-            </form>
-        </div>
-    </template>
-    <template id="form_enter-filling">
-        <div class="form_enter wrap-input">
-            <h3>Введіть дані для авторизації</h3>
-            <input class="user-email" required type="email" placeholder="Електронна адреса">
-            <input class="user-password" required type="password" placeholder="Пароль">
-            <input class="submit" type="submit" value="Зареєструватися">
-        </div>
-    </template>
-    <script src="./js/main.js" type="module"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Step Project "Cards"</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./css/reset.css" />
+		<link rel="stylesheet" href="./css/styles.css" />
+	</head>
+	<body>
+		<header>
+			<img class="img-logo" src="./img/logo.png" alt="Logo" />
+			<button class="enter-btn btn-style">Вхід</button>
+		</header>
+		<main>
+			<form class="filter">
+				<input id="visit-text" type="text" placeholder="Введіть заголовок/вміст візиту" />
+				<div>
+					<label for="status">Статус проведення візиту</label>
+					<select name="" id="status">
+						<option>Всі</option>
+						<option>Минулі візити</option>
+						<option>Активні візити</option>
+					</select>
+				</div>
+				<div>
+					<label for="urgency">Терміновість візиту</label>
+					<select name="" id="urgency">
+						<option>Всі</option>
+						<option>Висока</option>
+						<option>Середня</option>
+						<option>Низька</option>
+					</select>
+				</div>
+				<input id="find" type="submit" value="Пошук" />
+			</form>
+			<div class="cards-container"></div>
+		</main>
+		<template id="form-template">
+			<div class="form">
+				<form>
+					<img class="close-form" src="./img/close.png" alt="" />
+				</form>
+			</div>
+		</template>
+		<template id="form_enter-filling">
+			<div class="form_enter wrap-input">
+				<h3>Введіть дані для авторизації</h3>
+				<input class="user-email" required type="email" placeholder="Електронна адреса" />
+				<input class="user-password" required type="password" placeholder="Пароль" />
+				<input class="submit" type="submit" value="Зареєструватися" />
+			</div>
+		</template>
+
+		<template id="card-template">
+			<div class="card">
+				<img class="visit__delete" src="./img/delete.png" alt="delete" width="25" height="25" />
+				<p class="visit__person"></p>
+				<span class="visit__text visit__text-doctor"></span>
+				<span class="visit__text visit__text-origins"></span>
+				<span class="visit__text visit__text-purpose"></span>
+				<p class="visit__text visit__text-desc"></p>
+				<!-- <span class="visit__text visit__text-date"></span> -->
+				<img class="visit__edit" src="./img/edit.png" alt="edit" width="50" height="50" />
+				<button class="visit__btn visit__btn-more"></button>
+				<button class="visit__btn visit__btn-hide"></button>
+			</div>
+		</template>
+
+		<script src="./js/main.js" type="module"></script>
+	</body>
 </html>
