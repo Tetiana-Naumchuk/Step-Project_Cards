@@ -116,6 +116,16 @@ button:hover, input.submit:hover{
     padding: 5px;
     border: 0.2px solid #cecece;
     border-radius: 8px;
+    display: block;
+    width: 100%;
+}
+
+.inputs-container label{
+    font-size: 12px;
+}
+
+#origins{
+    margin-top: 5px;
 }
 
 input.submit{

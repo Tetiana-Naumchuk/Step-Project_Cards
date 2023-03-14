@@ -45,13 +45,15 @@ export default class Modal{
         btnSubmit.classList.add("submit");
         btnSubmit.type = "submit"
         btnSubmit.value = "Зберегти візит";
+        btnSubmit.style.pointerEvents = 'none'
 
         this.selectDoctor.innerHTML = ` 
-            <option value="Лікар" selected="selected">Оберіть лікаря</option>
+            <option disabled selected="selected">Оберіть лікаря</option>
             <option value="Кардіолог">Кардіолог</option>
             <option value="Стоматолог">Стоматолог</option>
             <option value="Терапевт">Терапевт</option>`;
         this.selectDoctor.className = 'select-doctor'
+        this.selectDoctor.required = true
 
         this.dopInfoWrapper = document.createElement("div");
         this.dopInfoWrapper.className = "additional-info";
@@ -60,17 +62,18 @@ export default class Modal{
             this.dopInfoWrapper.innerHTML = "";
             switch (this.selectDoctor.value) {
                 case "Кардіолог":
+                    btnSubmit.style.pointerEvents = 'auto'
                     this.pressure = document.createElement("input");
                     this.pressure.setAttribute("name", "pressure");
-                    this.pressure.placeholder = "Тиск";
+                    this.pressure.placeholder = "Звичайний тиск";
 
                     this.indexMassa = document.createElement("input");
                     this.indexMassa.setAttribute("name", "indexMassa");
-                    this.indexMassa.placeholder = "Індекс маси";
+                    this.indexMassa.placeholder = "Індекс маси тіла";
 
                     this.ill = document.createElement("input");
                     this.ill.setAttribute("name", "ill");
-                    this.ill.placeholder = "Перенесені захворювання";
+                    this.ill.placeholder = "Перенесені захворювання серцево-судинної системи";
 
                     this.age = document.createElement("input");
                     this.age.setAttribute("name", "age");
@@ -85,13 +88,15 @@ export default class Modal{
                     break;
             
                 case "Стоматолог":
+                    btnSubmit.style.pointerEvents = 'auto'
                     this.lastVisit = document.createElement("input");
                     this.lastVisit.setAttribute("name", "lastVisit");
-                    this.lastVisit.placeholder = "Останній візит";
+                    this.lastVisit.placeholder = "Дата останнього візиту";
                     this.dopInfoWrapper.append(this.lastVisit);
                     break;
 
                 case "Терапевт":
+                    btnSubmit.style.pointerEvents = 'auto'
                     this.age = document.createElement("input");
                     this.age.setAttribute("name", "age");
                     this.age.placeholder = "Вік";
@@ -103,30 +108,38 @@ export default class Modal{
         let patientName = document.createElement("input");
         patientName.setAttribute("name", "patientName");
         patientName.placeholder = "П.І.Б. пацієнта";
+        patientName.required = true
 
         let origins = document.createElement("select");
         origins.innerHTML = ` 
             <option value="Звичайна">Звичайна</option>
             <option value="Пріорітетна">Пріорітетна</option>
-            <option value="Термінова">Термінова</option>`;
+            <option value="Невідкладна">Невідкладна</option>`;
         origins.setAttribute("name", "origins");
+        origins.id = 'origins'
         origins.classList = 'selectOrigins'
         origins.placeholder = "Терміновість";
-
+        let labelOrigins = document.createElement("label");
+        labelOrigins.textContent = 'Терміновість візиту:'
+        labelOrigins.for = 'origins'
+        labelOrigins.append(origins)
+        
         let description = document.createElement("input");
         description.setAttribute("name", "description");
         description.placeholder = "Короткий опис візиту";
+        description.required = true
 
         let purposeVisit = document.createElement("input");
         purposeVisit.setAttribute("name", "purposeVisit");
         purposeVisit.placeholder = "Мета візиту";
+        purposeVisit.required = true
 
         this.inputsContainer.append(
             formTitle,
             patientName,
             purposeVisit,
             description,
-            origins,
+            labelOrigins,
             this.selectDoctor,
             this.dopInfoWrapper,
             btnSubmit
