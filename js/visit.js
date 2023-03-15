@@ -1,4 +1,4 @@
-import Requests from './requests.js';
+import Requests from './Requests.js';
 
 export class Visit {
 	constructor(data) {
@@ -7,7 +7,7 @@ export class Visit {
 		this.purposeVisit = data.purposeVisit;
 		this.description = data.description;
 		this.origins = data.origins;
-		this.fio = data.fio;
+		this.name = data.name;
 
 		const cardTemplate = document.querySelector('#card-template').content;
 		this.cardWrap = cardTemplate.querySelector('.card').cloneNode(true);
@@ -44,7 +44,7 @@ export class Visit {
 
 	render(parent) {
 		this.elem.deleteImg;
-		this.elem.fullName.textContent = this.fio;
+		this.elem.fullName.textContent = this.name;
 		this.elem.doctor.textContent = `Лікар: ${this.doctor}`;
 		this.elem.origins.textContent = `Терміновість: ${this.origins}`;
 		this.elem.purposeVisit.textContent = `Мета візиту: ${this.purposeVisit}`;
@@ -54,7 +54,7 @@ export class Visit {
 		this.elem.hideBtn.textContent = 'Приховати';
 
 		this.elem.self.dataset.id = this.id;
-
+		
 		this.elem.self.append(
 			this.elem.deleteImg,
 			this.elem.fullName,
