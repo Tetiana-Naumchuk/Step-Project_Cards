@@ -1,5 +1,9 @@
 import Requests from "./Requests.js"
 import { headerBtn } from "./main.js"
+import { Visit } from './visit.js';
+import { VisitDentist } from './visit.js';
+
+const cardContainer = document.querySelector('.cards-container');
 
 export default class Modal{
     constructor() {
@@ -177,9 +181,38 @@ export default class Modal{
                     console.log(data);
                     this.formWrap.classList.remove('active-form')
                     this.inputsContainer.innerHTML = ''
+
+                    if (data.length === 0) {
+                        const noItem = document.createElement('p');
+                        noItem.innerText = 'No item has been added';
+                        noItem.id = 'empty';
+                        cardContainer.append(noItem);
+                    } else {
+                        let visitsObjects = Object.keys(data).map(visit => {
+                            console.log(data[visit]);
+
+                            if (data[visit] === 'Стоматолог') {
+                                const visitCard = new VisitDentist(data);
+
+                                visitCard.render(cardContainer);
+                                return visitCard;
+                            } else if (data[visit] === 'Кардіолог') {
+                                const visitCard = new VisitCardiologist(visit);
+
+                                visitCard.render(cardContainer);
+                                return visitCard;
+                            } else if (data[visit] === 'Терапевт') {
+                                const visitCard = new VisitTherapist(visit);
+                                visitCard.render(cardContainer);
+                                return visitCard;
+                            }
+                        });
+                        return visitsObjects;
+                    }
                 });
         });
         
         return this.formWrap
     }
 }
+
