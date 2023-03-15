@@ -1,7 +1,6 @@
 import Requests from "./Requests.js"
 import { headerBtn } from "./main.js"
-import { Visit } from './visit.js';
-import { VisitDentist } from './visit.js';
+import { VisitDentist, VisitTherapist, VisitCardiologist } from './Visit.js';
 
 const cardContainer = document.querySelector('.cards-container');
 
@@ -188,8 +187,9 @@ export default class Modal{
                         noItem.id = 'empty';
                         cardContainer.append(noItem);
                     } else {
+                        console.log(Object.keys(data));
                         let visitsObjects = Object.keys(data).map(visit => {
-                            console.log(data[visit]);
+                            console.log(visit);
 
                             if (data[visit] === 'Стоматолог') {
                                 const visitCard = new VisitDentist(data);
