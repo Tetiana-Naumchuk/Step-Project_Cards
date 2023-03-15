@@ -50,20 +50,31 @@ export class Visit {
 	}
 }
 
-export class VisitDentist extends Visit {
+export class VisitCardiologist extends Visit {
 	constructor(data) {
 		super(data);
-		this.lastDateVisit = data.lastDateVisit;
-		console.log(this.lastDateVisit);
+		this.pressure = data.pressure;
+		this.indexMassa = data.indexMassa;
+		this.ill = data.ill;
+		this.age = data.age;
 	}
 
 	render(parent) {
 		super.render(parent);
-		this.elem.lastDateVisit = document.createElement('span');
+		this.elem.pressure = document.createElement('span');
+		this.elem.indexMassa = document.createElement('span');
+		this.elem.ill = document.createElement('span');
+		this.elem.age = document.createElement('span');
 
-		this.elem.lastDateVisit.textContent = `Дата останнього візиту: ${this.lastDateVisit}`;
+		this.elem.pressure.textContent = `Тиск: ${this.pressure}`;
+		this.elem.indexMassa.textContent = `Індекс маси тіла: ${this.indexMassa}`;
+		this.elem.ill.textContent = `Перенесені захворювання серця: ${this.ill}`;
+		this.elem.age.textContent = `Вік: ${this.age}`;
 
-		this.elem.lastDateVisit.classList.add('visit__text');
+		this.elem.pressure.classList.add('visit__text');
+		this.elem.indexMassa.classList.add('visit__text');
+		this.elem.ill.classList.add('visit__text');
+		this.elem.age.classList.add('visit__text');
 
 		this.elem.showMoreBtn.addEventListener('click', () => {
 			this.showMore();
@@ -87,7 +98,10 @@ export class VisitDentist extends Visit {
 				key === 'purposeVisit' ||
 				key === 'description' ||
 				key === 'origins' ||
-				key === 'lastDateVisit'
+				key === 'pressure' ||
+				key === 'indexMassa' ||
+				key === 'ill' ||
+				key === 'age'
 			) {
 				moreInfo.push(this.elem[key]);
 			}
@@ -102,7 +116,118 @@ export class VisitDentist extends Visit {
 	}
 
 	hide() {
-		this.elem.self.removeChild(this.elem.lastDateVisit);
+		this.elem.self.removeChild(this.elem.indexMassa);
+		this.elem.self.removeChild(this.elem.ill);
+		this.elem.self.removeChild(this.elem.age);
+		this.elem.hideBtn.style.display = 'none';
+		this.elem.showMoreBtn.style.display = 'inline-block';
+	}
+}
+
+export class VisitDentist extends Visit {
+	constructor(data) {
+		super(data);
+		this.lastVisit = data.lastVisit;
+	}
+
+	render(parent) {
+		super.render(parent);
+		this.elem.lastVisit = document.createElement('span');
+
+		this.elem.lastVisit.textContent = `Дата останнього візиту: ${this.lastVisit}`;
+
+		this.elem.lastVisit.classList.add('visit__text');
+
+		this.elem.showMoreBtn.addEventListener('click', () => {
+			this.showMore();
+		});
+		this.elem.hideBtn.addEventListener('click', () => {
+			this.hide();
+		});
+
+		if (parent) {
+			parent.append(this.elem.self);
+		} else {
+			return this.elem.self;
+		}
+	}
+
+	showMore() {
+		const moreInfo = [];
+
+		for (let key in this.elem) {
+			if (
+				key === 'purposeVisit' ||
+				key === 'description' ||
+				key === 'origins' ||
+				key === 'lastVisit'
+			) {
+				moreInfo.push(this.elem[key]);
+			}
+		}
+
+		moreInfo.forEach(item => {
+			this.elem.self.insertBefore(item, this.elem.showMoreBtn);
+		});
+
+		this.elem.showMoreBtn.style.display = 'none';
+		this.elem.hideBtn.style.display = 'inline-block';
+	}
+
+	hide() {
+		this.elem.self.removeChild(this.elem.lastVisit);
+		this.elem.hideBtn.style.display = 'none';
+		this.elem.showMoreBtn.style.display = 'inline-block';
+	}
+}
+
+export class VisitTherapist extends Visit {
+	constructor(data) {
+		super(data);
+		this.age = data.age;
+	}
+
+	render(parent) {
+		super.render(parent);
+		this.elem.age = document.createElement('span');
+
+		this.elem.age.textContent = `Вік: ${this.age}`;
+
+		this.elem.age.classList.add('visit__text');
+
+		this.elem.showMoreBtn.addEventListener('click', () => {
+			this.showMore();
+		});
+		this.elem.hideBtn.addEventListener('click', () => {
+			this.hide();
+		});
+
+		if (parent) {
+			parent.append(this.elem.self);
+		} else {
+			return this.elem.self;
+		}
+	}
+
+	showMore() {
+		const moreInfo = [];
+
+		for (let key in this.elem) {
+			if (key === 'purposeVisit' || key === 'description' || key === 'origins' || key === 'age') {
+				moreInfo.push(this.elem[key]);
+			}
+		}
+
+		moreInfo.forEach(item => {
+			this.elem.self.insertBefore(item, this.elem.showMoreBtn);
+		});
+
+		this.elem.showMoreBtn.style.display = 'none';
+		this.elem.hideBtn.style.display = 'inline-block';
+	}
+
+	hide() {
+		this.elem.self.removeChild(this.elem.age);
 		this.elem.hideBtn.style.display = 'none';
 		this.elem.showMoreBtn.style.display = 'inline-block';
 	}
