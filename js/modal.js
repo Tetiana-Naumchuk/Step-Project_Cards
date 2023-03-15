@@ -215,3 +215,4 @@ export default class Modal{
         return this.formWrap
     }
 }
+
