@@ -195,12 +195,12 @@ export default class Modal {
 							visitCard.render(cardContainer);
 							return visitCard;
 						} else if (data[visit] === 'Кардіолог') {
-							const visitCard = new VisitCardiologist(visit);
+							const visitCard = new VisitCardiologist(data);
 
 							visitCard.render(cardContainer);
 							return visitCard;
 						} else if (data[visit] === 'Терапевт') {
-							const visitCard = new VisitTherapist(visit);
+							const visitCard = new VisitTherapist(data);
 							visitCard.render(cardContainer);
 							return visitCard;
 						}

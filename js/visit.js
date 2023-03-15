@@ -54,7 +54,7 @@ export class Visit {
 		this.elem.hideBtn.textContent = 'Приховати';
 
 		this.elem.self.dataset.id = this.id;
-		
+
 		this.elem.self.append(
 			this.elem.deleteImg,
 			this.elem.fullName,
