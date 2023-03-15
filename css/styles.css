@@ -252,6 +252,7 @@ input.submit {
 	position: absolute;
 	top: 2px;
 	right: 2px;
+	cursor: pointer;
 }
 .visit__edit {
 	position: absolute;

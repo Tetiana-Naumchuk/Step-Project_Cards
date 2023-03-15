@@ -37,12 +37,9 @@ export default class ModalCreateVisit {
 				break;
 		}
 		Requests.post(visit).then(data => {
-			console.log(data);
-
 			if (data.hasOwnProperty('id')) {
 				this.modal.remove();
 			}
-
 			if (data.length === 0) {
 				const noItem = document.createElement('p');
 				noItem.innerText = 'No item has been added';
@@ -50,8 +47,6 @@ export default class ModalCreateVisit {
 				cardContainer.append(noItem);
 			} else {
 				let visitsObjects = Object.keys(data).map(visit => {
-					console.log(data[visit]);
-
 					if (data[visit] === 'Стоматолог') {
 						const visitCard = new VisitDentist(data);
 

@@ -1,3 +1,5 @@
+import Requests from './requests.js';
+
 export class Visit {
 	constructor(data) {
 		this.id = data.id;
@@ -23,7 +25,21 @@ export class Visit {
 			hideBtn: this.cardWrap.querySelector('.visit__btn-hide'),
 		};
 
-		console.log(this.elem);
+		this.elem.deleteImg.addEventListener('click', event => {
+			const response = Requests.delete(this.id);
+
+			if (response.status === 'Success') {
+				this.elem.self.remove();
+				const renderedVisits = document.querySelectorAll('.visit');
+				if (!renderedVisits || renderedVisits.length === 0) {
+					const noItem = document.createElement('p');
+					noItem.id = 'empty';
+					noItem.textContent = 'No item has been added';
+					parent.append(noItem);
+				}
+			}
+			location.reload();
+		});
 	}
 
 	render(parent) {
