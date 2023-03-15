@@ -132,6 +132,7 @@ export class VisitCardiologist extends Visit {
 	}
 
 	hide() {
+		this.elem.self.removeChild(this.elem.pressure);
 		this.elem.self.removeChild(this.elem.indexMassa);
 		this.elem.self.removeChild(this.elem.ill);
 		this.elem.self.removeChild(this.elem.age);

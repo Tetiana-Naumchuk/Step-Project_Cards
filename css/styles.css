@@ -93,36 +93,37 @@ input.submit:hover {
 	width: 17px;
 	box-shadow: rgba(0, 0, 0, 0.8) 0 0 3px 0;
 }
-.inputs-container{
-    width: 100%;
-    margin: 15px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
+.inputs-container {
+	width: 100%;
+	margin: 15px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 15px;
 }
 
-.inputs-container h3{
-    text-align: center;
-    color: #525252;
-    font-size: 20px;
+.inputs-container h3 {
+	text-align: center;
+	color: #525252;
+	font-size: 20px;
 }
 
-.inputs-container input, .inputs-container select{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    padding: 5px;
-    border: 0.2px solid #cecece;
-    border-radius: 8px;
-    display: block;
-    width: 100%;
+.inputs-container input,
+.inputs-container select {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 13px;
+	padding: 5px;
+	border: 0.2px solid #cecece;
+	border-radius: 8px;
+	display: block;
+	width: 100%;
 }
 
-.inputs-container label{
-    font-size: 12px;
+.inputs-container label {
+	font-size: 12px;
 }
 
-#origins{
-    margin-top: 5px;
+#origins {
+	margin-top: 5px;
 }
 
 input.submit {
@@ -193,10 +194,10 @@ input.submit {
 	border-radius: 8px;
 }
 
-.additional-info{
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
+.additional-info {
+	display: flex;
+	flex-direction: column;
+	row-gap: 15px;
 }
 
 .div-createVisit {
@@ -228,9 +229,10 @@ input.submit {
 	gap: 20px;
 	font-size: 15px;
 	border: 1px solid #cecece;
-	border-radius: 5px;
+	border-radius: 15px;
 	padding: 10px;
 	width: 30%;
+	height: 35%;
 	margin-top: 25px;
 	position: relative;
 	padding-bottom: 5px;
