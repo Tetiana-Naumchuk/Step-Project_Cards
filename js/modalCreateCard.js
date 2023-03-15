@@ -1,6 +1,8 @@
 import Requests from './requests.js';
 import { Visit } from './visit.js';
 import { VisitDentist } from './visit.js';
+import { VisitTherapist } from './visit.js';
+import { VisitCardiologist } from './visit.js';
 
 const cardContainer = document.querySelector('.cards-container');
 
@@ -56,12 +58,12 @@ export default class ModalCreateVisit {
 						visitCard.render(cardContainer);
 						return visitCard;
 					} else if (data[visit] === 'Кардіолог') {
-						const visitCard = new VisitCardiologist(visit);
+						const visitCard = new VisitCardiologist(data);
 
 						visitCard.render(cardContainer);
 						return visitCard;
 					} else if (data[visit] === 'Терапевт') {
-						const visitCard = new VisitTherapist(visit);
+						const visitCard = new VisitTherapist(data);
 						visitCard.render(cardContainer);
 						return visitCard;
 					}
