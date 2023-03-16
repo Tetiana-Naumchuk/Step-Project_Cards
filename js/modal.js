@@ -175,7 +175,6 @@ export default class Modal {
 			}
 
 			Requests.post(visit).then(data => {
-				console.log(data);
 				this.formWrap.classList.remove('active-form');
 				this.inputsContainer.innerHTML = '';
 
@@ -185,9 +184,7 @@ export default class Modal {
 					noItem.id = 'empty';
 					cardContainer.append(noItem);
 				} else {
-					console.log(Object.keys(data));
 					let visitsObjects = Object.keys(data).map(visit => {
-						console.log(visit);
 
 						if (data[visit] === 'Стоматолог') {
 							const visitCard = new VisitDentist(data);
