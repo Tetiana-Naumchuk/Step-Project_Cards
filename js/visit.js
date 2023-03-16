@@ -1,4 +1,5 @@
 import Requests from './Requests.js';
+import { cardContainer } from './modal.js';
 
 export class Visit {
 	constructor(data) {
@@ -26,19 +27,20 @@ export class Visit {
 		};
 
 		this.elem.deleteImg.addEventListener('click', event => {
-			const response = Requests.delete(this.id);
-
-			if (response.status === 'Success') {
-				this.elem.self.remove();
-				const renderedVisits = document.querySelectorAll('.visit');
-				if (!renderedVisits || renderedVisits.length === 0) {
-					const noItem = document.createElement('p');
-					noItem.id = 'empty';
-					noItem.textContent = 'No item has been added';
-					parent.append(noItem);
+			Requests.delete(this.id).then(response => {
+				response;
+				console.log(response);
+				if (response.status === 200) {
+					this.elem.self.remove();
+					const renderedVisits = document.querySelectorAll('.visit');
+					if (!renderedVisits || renderedVisits.length === 0) {
+						const noItem = document.createElement('p');
+						noItem.id = 'empty';
+						noItem.textContent = 'No item has been added';
+						cardContainer.append(noItem);
+					}
 				}
-			}
-			location.reload();
+			});
 		});
 	}
 
