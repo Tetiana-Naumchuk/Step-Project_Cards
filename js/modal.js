@@ -175,37 +175,16 @@ export default class Modal {
 			}
 
 			Requests.post(visit).then(data => {
-				console.log(data);
 				this.formWrap.classList.remove('active-form');
 				this.inputsContainer.innerHTML = '';
 
-				if (data.length === 0) {
-					const noItem = document.createElement('p');
-					noItem.innerText = 'No item has been added';
-					noItem.id = 'empty';
-					cardContainer.append(noItem);
-				} else {
-					console.log(Object.keys(data));
-					let visitsObjects = Object.keys(data).map(visit => {
-						console.log(visit);
-
-						if (data[visit] === 'Стоматолог') {
-							const visitCard = new VisitDentist(data);
-
-							visitCard.render(cardContainer);
-							return visitCard;
-						} else if (data[visit] === 'Кардіолог') {
-							const visitCard = new VisitCardiologist(data);
-
-							visitCard.render(cardContainer);
-							return visitCard;
-						} else if (data[visit] === 'Терапевт') {
-							const visitCard = new VisitTherapist(data);
-							visitCard.render(cardContainer);
-							return visitCard;
-						}
-					});
-					return visitsObjects;
+				const { doctor } = data;
+				if (doctor === 'Стоматолог') {
+					new VisitDentist(data).render(cardContainer);
+				} else if (doctor === 'Кардіолог') {
+					new VisitCardiologist(data).render(cardContainer);
+				} else if (doctor === 'Терапевт') {
+					new VisitTherapist(data).render(cardContainer);
 				}
 			});
 		});

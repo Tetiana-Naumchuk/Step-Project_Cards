@@ -56,14 +56,38 @@ export class Visit {
 
 		this.elem.self.dataset.id = this.id;
 
-		this.elem.self.append(
-			this.elem.deleteImg,
-			this.elem.fullName,
-			this.elem.doctor,
-			this.elem.editImg,
-			this.elem.showMoreBtn,
-			this.elem.hideBtn,
-		);
+		parent.append(this.elem.self);
+	}
+
+	showMore() {
+		const moreInfo = [];
+
+		for (let key in this.elem) {
+			if (
+				key !== 'self' &&
+				key !== 'deleteImg' &&
+				key !== 'editImg' &&
+				key !== 'showMoreBtn' &&
+				key !== 'hideBtn'
+			) {
+				moreInfo.push(this.elem[key]);
+			}
+		}
+
+		moreInfo.forEach(item => {
+			this.elem.self.insertBefore(item, this.elem.showMoreBtn);
+		});
+
+		this.elem.showMoreBtn.style.display = 'none';
+		this.elem.hideBtn.style.display = 'inline-block';
+	}
+
+	hide() {
+		this.elem.self.querySelectorAll('.visit__text-add').forEach(item => {
+			this.elem.self.removeChild(item);
+		});
+		this.elem.hideBtn.style.display = 'none';
+		this.elem.showMoreBtn.style.display = 'inline-block';
 	}
 }
 
@@ -88,10 +112,10 @@ export class VisitCardiologist extends Visit {
 		this.elem.ill.textContent = `Перенесені захворювання серця: ${this.ill}`;
 		this.elem.age.textContent = `Вік: ${this.age}`;
 
-		this.elem.pressure.classList.add('visit__text');
-		this.elem.indexMassa.classList.add('visit__text');
-		this.elem.ill.classList.add('visit__text');
-		this.elem.age.classList.add('visit__text');
+		this.elem.pressure.classList.add('visit__text-add');
+		this.elem.indexMassa.classList.add('visit__text-add');
+		this.elem.ill.classList.add('visit__text-add');
+		this.elem.age.classList.add('visit__text-add');
 
 		this.elem.showMoreBtn.addEventListener('click', () => {
 			this.showMore();
@@ -99,46 +123,10 @@ export class VisitCardiologist extends Visit {
 		this.elem.hideBtn.addEventListener('click', () => {
 			this.hide();
 		});
-
-		if (parent) {
-			parent.append(this.elem.self);
-		} else {
-			return this.elem.self;
-		}
-	}
-
-	showMore() {
-		const moreInfo = [];
-
-		for (let key in this.elem) {
-			if (
-				key === 'purposeVisit' ||
-				key === 'description' ||
-				key === 'origins' ||
-				key === 'pressure' ||
-				key === 'indexMassa' ||
-				key === 'ill' ||
-				key === 'age'
-			) {
-				moreInfo.push(this.elem[key]);
-			}
-		}
-
-		moreInfo.forEach(item => {
-			this.elem.self.insertBefore(item, this.elem.showMoreBtn);
-		});
-
-		this.elem.showMoreBtn.style.display = 'none';
-		this.elem.hideBtn.style.display = 'inline-block';
 	}
 
 	hide() {
-		this.elem.self.removeChild(this.elem.pressure);
-		this.elem.self.removeChild(this.elem.indexMassa);
-		this.elem.self.removeChild(this.elem.ill);
-		this.elem.self.removeChild(this.elem.age);
-		this.elem.hideBtn.style.display = 'none';
-		this.elem.showMoreBtn.style.display = 'inline-block';
+		super.hide();
 	}
 }
 
@@ -154,7 +142,7 @@ export class VisitDentist extends Visit {
 
 		this.elem.lastVisit.textContent = `Дата останнього візиту: ${this.lastVisit}`;
 
-		this.elem.lastVisit.classList.add('visit__text');
+		this.elem.lastVisit.classList.add('visit__text-add');
 
 		this.elem.showMoreBtn.addEventListener('click', () => {
 			this.showMore();
@@ -162,40 +150,10 @@ export class VisitDentist extends Visit {
 		this.elem.hideBtn.addEventListener('click', () => {
 			this.hide();
 		});
-
-		if (parent) {
-			parent.append(this.elem.self);
-		} else {
-			return this.elem.self;
-		}
-	}
-
-	showMore() {
-		const moreInfo = [];
-
-		for (let key in this.elem) {
-			if (
-				key === 'purposeVisit' ||
-				key === 'description' ||
-				key === 'origins' ||
-				key === 'lastVisit'
-			) {
-				moreInfo.push(this.elem[key]);
-			}
-		}
-
-		moreInfo.forEach(item => {
-			this.elem.self.insertBefore(item, this.elem.showMoreBtn);
-		});
-
-		this.elem.showMoreBtn.style.display = 'none';
-		this.elem.hideBtn.style.display = 'inline-block';
 	}
 
 	hide() {
-		this.elem.self.removeChild(this.elem.lastVisit);
-		this.elem.hideBtn.style.display = 'none';
-		this.elem.showMoreBtn.style.display = 'inline-block';
+		super.hide();
 	}
 }
 
@@ -211,7 +169,7 @@ export class VisitTherapist extends Visit {
 
 		this.elem.age.textContent = `Вік: ${this.age}`;
 
-		this.elem.age.classList.add('visit__text');
+		this.elem.age.classList.add('visit__text-add');
 
 		this.elem.showMoreBtn.addEventListener('click', () => {
 			this.showMore();
@@ -219,34 +177,9 @@ export class VisitTherapist extends Visit {
 		this.elem.hideBtn.addEventListener('click', () => {
 			this.hide();
 		});
-
-		if (parent) {
-			parent.append(this.elem.self);
-		} else {
-			return this.elem.self;
-		}
-	}
-
-	showMore() {
-		const moreInfo = [];
-
-		for (let key in this.elem) {
-			if (key === 'purposeVisit' || key === 'description' || key === 'origins' || key === 'age') {
-				moreInfo.push(this.elem[key]);
-			}
-		}
-
-		moreInfo.forEach(item => {
-			this.elem.self.insertBefore(item, this.elem.showMoreBtn);
-		});
-
-		this.elem.showMoreBtn.style.display = 'none';
-		this.elem.hideBtn.style.display = 'inline-block';
 	}
 
 	hide() {
-		this.elem.self.removeChild(this.elem.age);
-		this.elem.hideBtn.style.display = 'none';
-		this.elem.showMoreBtn.style.display = 'inline-block';
+		super.hide();
 	}
 }
