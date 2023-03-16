@@ -30,11 +30,12 @@ export class Visit {
 			Requests.delete(this.id).then(response => {
 				if (response.status === 200) {
 					this.elem.self.remove();
-					const renderedVisits = document.querySelectorAll('.visit');
+					const renderedVisits = document.querySelectorAll('.card');
 					if (!renderedVisits || renderedVisits.length === 0) {
 						const noItem = document.createElement('p');
 						noItem.id = 'empty';
 						noItem.textContent = 'No item has been added';
+						noItem.style.marginTop = '50px';
 						cardContainer.append(noItem);
 					}
 				}
