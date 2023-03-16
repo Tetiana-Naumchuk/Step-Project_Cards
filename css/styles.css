@@ -192,6 +192,9 @@ input.submit {
 	background-color: white;
 	border: 0.2px solid #cecece;
 	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .additional-info {
