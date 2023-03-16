@@ -2,7 +2,7 @@ import Requests from './Requests.js';
 import { headerBtn } from './main.js';
 import { VisitDentist, VisitTherapist, VisitCardiologist } from './Visit.js';
 
-const cardContainer = document.querySelector('.cards-container');
+export const cardContainer = document.querySelector('.cards-container');
 
 export default class Modal {
 	constructor() {

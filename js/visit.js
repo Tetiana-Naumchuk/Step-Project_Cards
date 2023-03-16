@@ -1,4 +1,5 @@
 import Requests from './Requests.js';
+import { cardContainer } from './modal.js';
 
 export class Visit {
 	constructor(data) {
@@ -27,8 +28,6 @@ export class Visit {
 
 		this.elem.deleteImg.addEventListener('click', event => {
 			Requests.delete(this.id).then(response => {
-				response;
-				console.log(response);
 				if (response.status === 200) {
 					this.elem.self.remove();
 					const renderedVisits = document.querySelectorAll('.visit');
