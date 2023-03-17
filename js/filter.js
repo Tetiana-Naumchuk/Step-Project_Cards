@@ -10,7 +10,7 @@ export default class Filter{
         }
     }
     makeFilter() {
-        const newFilter={}
+        const newFilter = {}
         for (let key in this.myfilter) {
             if (this.myfilter[key] !== '') {
                 console.log(key);
@@ -19,7 +19,24 @@ export default class Filter{
         }
         console.log(newFilter);
         const cardsCollection = document.getElementsByClassName('card')
-        console.log(cardsCollection);
-        Array.from(cardsCollection).forEach(card =>console.log(card))
+        Array.from(cardsCollection).forEach(card => {
+            let cardCheck = 0
+            if (Object.keys(newFilter).length === 0) {
+                    card.style.display = 'grid'
+            }
+            for (let key in newFilter) {
+                card.querySelectorAll(`[name="${key}"]`).forEach(elem => {
+                    if (elem.textContent.includes(newFilter[key])) {
+                            cardCheck++
+                    } 
+                    
+                })
+            }
+            if (cardCheck === Object.keys(newFilter).length) {
+                card.style.display = 'grid'
+            } else {
+                card.style.display = 'none'
+            }    
+        })
     }
 }
