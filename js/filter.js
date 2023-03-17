@@ -25,12 +25,13 @@ export default class Filter{
                     card.style.display = 'grid'
             }
             for (let key in newFilter) {
+                let cardString = ''
                 card.querySelectorAll(`[name="${key}"]`).forEach(elem => {
-                    if (elem.textContent.includes(newFilter[key])) {
-                            cardCheck++
-                    } 
-                    
+                    cardString += elem.textContent.split(':')[1]
                 })
+                if (cardString.includes(newFilter[key])) {
+                        cardCheck++
+                } 
             }
             if (cardCheck === Object.keys(newFilter).length) {
                 card.style.display = 'grid'
