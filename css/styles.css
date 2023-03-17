@@ -255,3 +255,9 @@ input.submit {
 .visit__btn-hide {
 	display: none;
 }
+.visit__person,
+.visit__text-doctor {
+	font-size: 18px;
+	font-weight: bold;
+	color: #808080;
+}

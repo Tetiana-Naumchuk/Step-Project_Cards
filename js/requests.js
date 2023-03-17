@@ -1,57 +1,56 @@
-const URL = 'https://ajax.test-danit.com/api/v2/cards/'
+const URL = 'https://ajax.test-danit.com/api/v2/cards/';
 
-const token = localStorage.getItem('token')
+const token = localStorage.getItem('token');
 
 export default class Requests {
-    static enter(object) {
-        return fetch(URL+"login", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(object)
-        })
-        .then(response => response.text())
-    }
-
-	static get(id='') {
-		return fetch(URL + id, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        }).then(response => response.json());
+	static enter(object) {
+		return fetch(URL + 'login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(object),
+		}).then(response => response.text());
 	}
 
-    static post(object) {
-        return fetch(URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(object)
-        }).then(response => response.json());
-    }
+	static get(id = '') {
+		return fetch(URL + id, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		}).then(response => response.json());
+	}
+
+	static post(object) {
+		return fetch(URL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(object),
+		}).then(response => response.json());
+	}
 
 	static put(object, id) {
 		return fetch(URL + id, {
-			method: "PUT",
+			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+				Authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify(object),
-        }).then(response => response.json());
+		}).then(response => response.json());
 	}
 
 	static delete(id) {
 		return fetch(URL + id, {
-            method: "DELETE",
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-		})
+			method: 'DELETE',
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
 	}
 }
