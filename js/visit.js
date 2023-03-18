@@ -26,6 +26,10 @@ export class Visit {
 			hideBtn: this.cardWrap.querySelector('.visit__btn-hide'),
 		};
 
+		this.elem.editImg.addEventListener('click', event => {
+			console.log(data);
+		});
+
 		this.elem.deleteImg.addEventListener('click', event => {
 			Requests.delete(this.id).then(response => {
 				if (response.status === 200) {
@@ -89,6 +93,15 @@ export class Visit {
 		this.elem.hideBtn.style.display = 'none';
 		this.elem.showMoreBtn.style.display = 'inline-block';
 	}
+
+	showHideBtn() {
+		this.elem.showMoreBtn.addEventListener('click', () => {
+			this.showMore();
+		});
+		this.elem.hideBtn.addEventListener('click', () => {
+			this.hide();
+		});
+	}
 }
 
 export class VisitCardiologist extends Visit {
@@ -117,12 +130,7 @@ export class VisitCardiologist extends Visit {
 		this.elem.ill.classList.add('visit__text-add');
 		this.elem.age.classList.add('visit__text-add');
 
-		this.elem.showMoreBtn.addEventListener('click', () => {
-			this.showMore();
-		});
-		this.elem.hideBtn.addEventListener('click', () => {
-			this.hide();
-		});
+		this.showHideBtn();
 	}
 
 	hide() {
@@ -144,12 +152,7 @@ export class VisitDentist extends Visit {
 
 		this.elem.lastVisit.classList.add('visit__text-add');
 
-		this.elem.showMoreBtn.addEventListener('click', () => {
-			this.showMore();
-		});
-		this.elem.hideBtn.addEventListener('click', () => {
-			this.hide();
-		});
+		this.showHideBtn();
 	}
 
 	hide() {
@@ -171,12 +174,7 @@ export class VisitTherapist extends Visit {
 
 		this.elem.age.classList.add('visit__text-add');
 
-		this.elem.showMoreBtn.addEventListener('click', () => {
-			this.showMore();
-		});
-		this.elem.hideBtn.addEventListener('click', () => {
-			this.hide();
-		});
+		this.showHideBtn();
 	}
 
 	hide() {

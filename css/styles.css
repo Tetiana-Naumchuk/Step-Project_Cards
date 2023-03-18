@@ -254,6 +254,7 @@ input.submit {
 	position: absolute;
 	top: 2px;
 	right: 30px;
+	cursor: pointer;
 }
 .visit__btn-hide {
 	display: none;

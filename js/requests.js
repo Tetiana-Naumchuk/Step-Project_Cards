@@ -34,7 +34,7 @@ export default class Requests {
 		}).then(response => response.json());
 	}
 
-	static put(object, id) {
+	static put(object, id, token) {
 		return fetch(URL + id, {
 			method: 'PUT',
 			headers: {
