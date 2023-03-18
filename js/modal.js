@@ -41,119 +41,131 @@ export default class Modal {
 		return this.formWrap;
 	}
 
-	visit() {
+	_renderVisit(modalTitle, { doctor = '', fullName = '', origins = '', purposeVisit = '', description = '', pressure = '', indexMassa = '', ill = '', age = '', lastVisit = '' } = '') {
 		const formTitle = document.createElement('h3');
-		formTitle.textContent = 'Заповніть поля для створення нового запису';
+		formTitle.textContent = modalTitle
 
 		this.selectDoctor = document.createElement('select');
 
-		let btnSubmit = document.createElement('input');
+		const btnSubmit = document.createElement('input');
 		btnSubmit.classList.add('submit');
 		btnSubmit.type = 'submit';
 		btnSubmit.value = 'Зберегти візит';
 		btnSubmit.style.pointerEvents = 'none';
 
 		this.selectDoctor.innerHTML = ` 
-            <option disabled selected="selected">Оберіть лікаря</option>
+            <option value='doctor' disabled>Оберіть лікаря</option>
             <option value="Кардіолог">Кардіолог</option>
             <option value="Стоматолог">Стоматолог</option>
             <option value="Терапевт">Терапевт</option>`;
-		this.selectDoctor.className = 'select-doctor';
-		this.selectDoctor.required = true;
+		if (doctor === '') {
+			this.selectDoctor.querySelector(`[value='doctor']`).selected = "selected"
+		} else {
+			this.selectDoctor.querySelector(`[value='${doctor}']`).selected = "selected"
+		}
 
-		this.dopInfoWrapper = document.createElement('div');
-		this.dopInfoWrapper.className = 'additional-info';
+		const dopInfoWrapper = document.createElement('div');
+		dopInfoWrapper.className = 'additional-info';
 
 		this.selectDoctor.addEventListener('change', () => {
-			this.dopInfoWrapper.innerHTML = '';
+			dopInfoWrapper.innerHTML = '';
 			switch (this.selectDoctor.value) {
 				case 'Кардіолог':
 					btnSubmit.style.pointerEvents = 'auto';
 					this.pressure = document.createElement('input');
-					this.pressure.setAttribute('name', 'pressure');
 					this.pressure.placeholder = 'Звичайний тиск';
+					this.pressure.textContent = pressure
 
 					this.indexMassa = document.createElement('input');
-					this.indexMassa.setAttribute('name', 'indexMassa');
+					this.indexMassa.setAttribute('type', 'number');
 					this.indexMassa.placeholder = 'Індекс маси тіла';
+					this.indexMassa.textContent = indexMassa
 
 					this.ill = document.createElement('input');
-					this.ill.setAttribute('name', 'ill');
 					this.ill.placeholder = 'Перенесені захворювання серцево-судинної системи';
+					this.ill.textContent = ill
 
 					this.age = document.createElement('input');
-					this.age.setAttribute('name', 'age');
+					this.age.setAttribute('type', 'number');
 					this.age.placeholder = 'Вік';
+					this.age.textContent = age
 
-					this.dopInfoWrapper.append(this.pressure, this.indexMassa, this.ill, this.age);
+					dopInfoWrapper.append(this.pressure, this.indexMassa, this.ill, this.age);
 					break;
 
 				case 'Стоматолог':
 					btnSubmit.style.pointerEvents = 'auto';
 					this.lastVisit = document.createElement('input');
-					this.lastVisit.setAttribute('name', 'lastVisit');
+					this.lastVisit.setAttribute('type', 'date');
 					this.lastVisit.placeholder = 'Дата останнього візиту';
-					this.dopInfoWrapper.append(this.lastVisit);
+					this.lastVisit.textContent = lastVisit
+					dopInfoWrapper.append(this.lastVisit);
 					break;
 
 				case 'Терапевт':
 					btnSubmit.style.pointerEvents = 'auto';
 					this.age = document.createElement('input');
-					this.age.setAttribute('name', 'age');
+					this.age.setAttribute('type', 'number');
 					this.age.placeholder = 'Вік';
-					this.dopInfoWrapper.append(this.age);
+					this.age.textContent = age
+					dopInfoWrapper.append(this.age);
 					break;
 			}
 		});
 
-		let patientName = document.createElement('input');
-		patientName.setAttribute('name', 'patientName');
-		patientName.placeholder = 'П.І.Б. пацієнта';
-		patientName.required = true;
+		this.patientName = document.createElement('input');
+		this.patientName.placeholder = 'П.І.Б. пацієнта';
+		this.patientName.textContent = fullName
+		this.patientName.required = true;
 
-		let origins = document.createElement('select');
-		origins.innerHTML = ` 
+		this.origins = document.createElement('select');
+		this.origins.innerHTML = ` 
             <option value="Звичайна">Звичайна</option>
             <option value="Пріорітетна">Пріорітетна</option>
             <option value="Невідкладна">Невідкладна</option>`;
-		origins.setAttribute('name', 'origins');
-		origins.id = 'origins';
-		origins.classList = 'selectOrigins';
-		origins.placeholder = 'Терміновість';
-		let labelOrigins = document.createElement('label');
+		this.origins.id = 'origins';
+		this.origins.placeholder = 'Терміновість';
+		if (origins !== '') {
+			this.origins.querySelector(`[value='${origins}']`).selected = "selected"
+		}
+
+		const labelOrigins = document.createElement('label');
 		labelOrigins.textContent = 'Терміновість візиту:';
 		labelOrigins.for = 'origins';
-		labelOrigins.append(origins);
+		labelOrigins.append(this.origins);
 
-		let description = document.createElement('input');
-		description.setAttribute('name', 'description');
-		description.placeholder = 'Короткий опис візиту';
-		description.required = true;
+		this.description = document.createElement('input');
+		this.description.textContent = description
+		this.description.placeholder = 'Короткий опис візиту';
+		this.description.required = true;
 
-		let purposeVisit = document.createElement('input');
-		purposeVisit.setAttribute('name', 'purposeVisit');
-		purposeVisit.placeholder = 'Мета візиту';
-		purposeVisit.required = true;
+		this.purposeVisit = document.createElement('input');
+		this.purposeVisit.textContent = purposeVisit
+		this.purposeVisit.placeholder = 'Мета візиту';
+		this.purposeVisit.required = true;
 
 		this.inputsContainer.append(
 			formTitle,
-			patientName,
-			purposeVisit,
-			description,
+			this.patientName,
+			this.purposeVisit,
+			this.description,
 			labelOrigins,
 			this.selectDoctor,
-			this.dopInfoWrapper,
+			dopInfoWrapper,
 			btnSubmit,
 		);
-
+	}
+	
+	visitCreateNew() {
+		this._renderVisit('Заповніть поля для створення нового запису')
 		this.form.addEventListener('submit', e => {
 			e.preventDefault();
 
 			let visit = {
-				name: patientName.value,
-				purposeVisit: purposeVisit.value,
-				description: description.value,
-				origins: origins.value,
+				name: this.patientName.value,
+				purposeVisit: this.purposeVisit.value,
+				description: this.description.value,
+				origins: this.origins.value,
 				doctor: this.selectDoctor.value,
 			};
 
@@ -188,7 +200,45 @@ export default class Modal {
 				}
 			});
 		});
-
 		return this.formWrap;
+	}
+
+	visitEdit(visitObject) {
+		this._renderVisit('Відкоригуйте необхідну інформацію про візит', visitObject)
+		const {id} = visitObject
+		this.form.addEventListener('submit', e => {
+			e.preventDefault();
+			let visit = {
+				name: this.patientName.value,
+				purposeVisit: this.purposeVisit.value,
+				description: this.description.value,
+				origins: this.origins.value,
+				doctor: this.selectDoctor.value,
+			};
+
+			switch (this.selectDoctor.value) {
+				case 'Кардіолог':
+					visit.pressure = this.pressure.value;
+					visit.indexMassa = this.indexMassa.value;
+					visit.ill = this.ill.value;
+					visit.age = this.age.value;
+					break;
+				case 'Стоматолог':
+					visit.lastVisit = this.lastVisit.value;
+					break;
+				case 'Терапевт':
+					visit.age = this.age.value;
+					break;
+				default:
+					break;
+			}
+			this.formWrap.classList.remove('active-form');
+			this.inputsContainer.innerHTML = '';
+
+			Requests.put(visit,id).then(data => {
+				const cardForEdit = cardContainer.querySelector(`[data-id="${key}"]`)
+				return data
+			});
+		});
 	}
 }
