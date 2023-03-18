@@ -1,5 +1,6 @@
 import Requests from './Requests.js';
 import { cardContainer } from './modal.js';
+import Modal from './modal.js';
 
 export class Visit {
 	constructor(data) {
@@ -28,6 +29,8 @@ export class Visit {
 
 		this.elem.editImg.addEventListener('click', event => {
 			console.log(data);
+			const modal = new Modal().visitEdit(data);
+			console.log(modal);
 		});
 
 		this.elem.deleteImg.addEventListener('click', event => {
