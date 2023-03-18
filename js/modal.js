@@ -41,23 +41,9 @@ export default class Modal {
 		return this.formWrap;
 	}
 
-	_renderVisit(
-		modalTitle,
-		{
-			doctor = '',
-			fullName = '',
-			origins = '',
-			purposeVisit = '',
-			description = '',
-			pressure = '',
-			indexMassa = '',
-			ill = '',
-			age = '',
-			lastVisit = '',
-		} = '',
-	) {
+	_renderVisit(modalTitle, { doctor = '', fullName = '', origins = '', purposeVisit = '', description = '', pressure = '', indexMassa = '', ill = '', age = '', lastVisit = '' } = '') {
 		const formTitle = document.createElement('h3');
-		formTitle.textContent = modalTitle;
+		formTitle.textContent = modalTitle
 
 		this.selectDoctor = document.createElement('select');
 
@@ -73,9 +59,9 @@ export default class Modal {
             <option value="Стоматолог">Стоматолог</option>
             <option value="Терапевт">Терапевт</option>`;
 		if (doctor === '') {
-			this.selectDoctor.querySelector(`[value='doctor']`).selected = 'selected';
+			this.selectDoctor.querySelector(`[value='doctor']`).selected = "selected"
 		} else {
-			this.selectDoctor.querySelector(`[value='${doctor}']`).selected = 'selected';
+			this.selectDoctor.querySelector(`[value='${doctor}']`).selected = "selected"
 		}
 
 		const dopInfoWrapper = document.createElement('div');
@@ -88,21 +74,21 @@ export default class Modal {
 					btnSubmit.style.pointerEvents = 'auto';
 					this.pressure = document.createElement('input');
 					this.pressure.placeholder = 'Звичайний тиск';
-					this.pressure.textContent = pressure;
+					this.pressure.textContent = pressure
 
 					this.indexMassa = document.createElement('input');
 					this.indexMassa.setAttribute('type', 'number');
 					this.indexMassa.placeholder = 'Індекс маси тіла';
-					this.indexMassa.textContent = indexMassa;
+					this.indexMassa.textContent = indexMassa
 
 					this.ill = document.createElement('input');
 					this.ill.placeholder = 'Перенесені захворювання серцево-судинної системи';
-					this.ill.textContent = ill;
+					this.ill.textContent = ill
 
 					this.age = document.createElement('input');
 					this.age.setAttribute('type', 'number');
 					this.age.placeholder = 'Вік';
-					this.age.textContent = age;
+					this.age.textContent = age
 
 					dopInfoWrapper.append(this.pressure, this.indexMassa, this.ill, this.age);
 					break;
@@ -112,7 +98,7 @@ export default class Modal {
 					this.lastVisit = document.createElement('input');
 					this.lastVisit.setAttribute('type', 'date');
 					this.lastVisit.placeholder = 'Дата останнього візиту';
-					this.lastVisit.textContent = lastVisit;
+					this.lastVisit.textContent = lastVisit
 					dopInfoWrapper.append(this.lastVisit);
 					break;
 
@@ -121,7 +107,7 @@ export default class Modal {
 					this.age = document.createElement('input');
 					this.age.setAttribute('type', 'number');
 					this.age.placeholder = 'Вік';
-					this.age.textContent = age;
+					this.age.textContent = age
 					dopInfoWrapper.append(this.age);
 					break;
 			}
@@ -129,7 +115,7 @@ export default class Modal {
 
 		this.patientName = document.createElement('input');
 		this.patientName.placeholder = 'П.І.Б. пацієнта';
-		this.patientName.textContent = fullName;
+		this.patientName.textContent = fullName
 		this.patientName.required = true;
 
 		this.origins = document.createElement('select');
@@ -140,7 +126,7 @@ export default class Modal {
 		this.origins.id = 'origins';
 		this.origins.placeholder = 'Терміновість';
 		if (origins !== '') {
-			this.origins.querySelector(`[value='${origins}']`).selected = 'selected';
+			this.origins.querySelector(`[value='${origins}']`).selected = "selected"
 		}
 
 		const labelOrigins = document.createElement('label');
@@ -149,12 +135,12 @@ export default class Modal {
 		labelOrigins.append(this.origins);
 
 		this.description = document.createElement('input');
-		this.description.textContent = description;
+		this.description.textContent = description
 		this.description.placeholder = 'Короткий опис візиту';
 		this.description.required = true;
 
 		this.purposeVisit = document.createElement('input');
-		this.purposeVisit.textContent = purposeVisit;
+		this.purposeVisit.textContent = purposeVisit
 		this.purposeVisit.placeholder = 'Мета візиту';
 		this.purposeVisit.required = true;
 
@@ -169,9 +155,9 @@ export default class Modal {
 			btnSubmit,
 		);
 	}
-
+	
 	visitCreateNew() {
-		this._renderVisit('Заповніть поля для створення нового запису');
+		this._renderVisit('Заповніть поля для створення нового запису')
 		this.form.addEventListener('submit', e => {
 			e.preventDefault();
 
@@ -217,9 +203,9 @@ export default class Modal {
 		return this.formWrap;
 	}
 
-	visitEdit(data) {
-		this._renderVisit('Відкоригуйте необхідну інформацію про візит', data);
-		const { id } = data;
+	visitEdit(visitObject) {
+		this._renderVisit('Відкоригуйте необхідну інформацію про візит', visitObject)
+		const {id} = visitObject
 		this.form.addEventListener('submit', e => {
 			e.preventDefault();
 			let visit = {
@@ -249,9 +235,9 @@ export default class Modal {
 			this.formWrap.classList.remove('active-form');
 			this.inputsContainer.innerHTML = '';
 
-			Requests.put(visit, id).then(data => {
-				const cardForEdit = cardContainer.querySelector(`[data-id="${key}"]`);
-				return data;
+			Requests.put(visit,id).then(data => {
+				const cardForEdit = cardContainer.querySelector(`[data-id="${key}"]`)
+				return data
 			});
 		});
 	}

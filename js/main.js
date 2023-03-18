@@ -5,7 +5,6 @@ import { VisitDentist, VisitTherapist, VisitCardiologist } from './Visit.js';
 import Filter from "./Filter.js";
 
 export const headerBtn = document.querySelector('.header-btn')
-// new Filter().makeFilter()
 
 const filter = document.querySelector('.filter')
 filter.addEventListener('submit', (event) => {
@@ -38,6 +37,6 @@ headerBtn.addEventListener('click', () => {
     if (headerBtn.textContent === "Вхід") {
         document.body.prepend(new Modal().enter())
     } else{
-        document.body.prepend(new Modal().visit())
+        document.body.prepend(new Modal().visitCreateNew())
     }
 })
