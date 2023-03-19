@@ -59,13 +59,13 @@
 		<template id="card-template">
 			<div class="card">
 				<img class="visit__delete" src="./img/delete.png" alt="delete" width="25" height="25" />
-				<p class="visit__person"></p>
+				<p data-edit="name" class="visit__person"></p>
 				<!-- <img class="doctor-img" src="./img/doctor.png" alt="doctor" width="50" height="50" /> -->
-				<span name="doctor" class="visit__text visit__text-doctor"></span>
+				<span data-edit="doctor" name="doctor" class="visit__text visit__text-doctor"></span>
 				<img class="doctor-img" src="./img/doctor.png" alt="doctor" width="50" height="50" />
-				<span name="urgency" class="visit__text visit__text-origins"></span>
-				<span name="text" class="visit__text visit__text-purpose"></span>
-				<p name="text" class="visit__text visit__text-desc"></p>
+				<span data-edit="origins" name="urgency" class="visit__text visit__text-origins"></span>
+				<span data-edit="purposeVisit" name="text" class="visit__text visit__text-purpose"></span>
+				<p data-edit="description" name="text" class="visit__text visit__text-desc"></p>
 				<!-- <span class="visit__text visit__text-date"></span> -->
 				<img class="visit__edit" src="./img/edit.png" alt="edit" width="50" height="50" />
 				<button class="visit__btn visit__btn-more"></button>

@@ -206,6 +206,10 @@ input.submit {
 	flex-direction: column;
 	row-gap: 15px;
 }
+.additional-info > div{
+	display: none;
+}
+
 
 .div-createVisit {
 	z-index: 100;

@@ -35,8 +35,8 @@ if (localStorage.getItem('token')) {
 
 headerBtn.addEventListener('click', () => {
     if (headerBtn.textContent === "Вхід") {
-        document.body.prepend(new Modal().enter())
+        new Modal(document.body).enter()
     } else{
-        document.body.prepend(new Modal().visitCreateNew())
+        new Modal(document.body).visitCreateNew()
     }
 })

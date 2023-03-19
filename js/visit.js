@@ -189,3 +189,4 @@ export class VisitTherapist extends Visit {
 		super.hide();
 	}
 }
+
