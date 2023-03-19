@@ -1,5 +1,6 @@
 import Requests from './Requests.js';
 import { cardContainer } from './modal.js';
+import Modal from './modal.js';
 
 export class Visit {
 	constructor(data) {
@@ -26,7 +27,7 @@ export class Visit {
 			hideBtn: this.cardWrap.querySelector('.visit__btn-hide'),
 		};
 
-		this.elem.deleteImg.addEventListener('click', event => {
+		this.elem.deleteImg.addEventListener('click', () => {
 			Requests.delete(this.id).then(response => {
 				if (response.status === 200) {
 					this.elem.self.remove();
@@ -41,6 +42,10 @@ export class Visit {
 				}
 			});
 		});
+		this.elem.editImg.addEventListener('click', () => {
+			console.log(data)
+			new Modal(document.body).visitEdit(data)
+		})
 	}
 
 	render(parent) {
@@ -103,9 +108,13 @@ export class VisitCardiologist extends Visit {
 	render(parent) {
 		super.render(parent);
 		this.elem.pressure = document.createElement('span');
+		this.elem.pressure.setAttribute('data-edit','pressure')
 		this.elem.indexMassa = document.createElement('span');
+		this.elem.indexMassa.setAttribute('data-edit','indexMassa')
 		this.elem.ill = document.createElement('span');
+		this.elem.ill.setAttribute('data-edit','ill')
 		this.elem.age = document.createElement('span');
+		this.elem.age.setAttribute('data-edit','age')
 
 		this.elem.pressure.textContent = `Тиск: ${this.pressure}`;
 		this.elem.indexMassa.textContent = `Індекс маси тіла: ${this.indexMassa}`;
@@ -139,6 +148,7 @@ export class VisitDentist extends Visit {
 	render(parent) {
 		super.render(parent);
 		this.elem.lastVisit = document.createElement('span');
+		this.elem.lastVisit.setAttribute('data-edit','lastVisit')
 
 		this.elem.lastVisit.textContent = `Дата останнього візиту: ${this.lastVisit}`;
 
@@ -166,6 +176,7 @@ export class VisitTherapist extends Visit {
 	render(parent) {
 		super.render(parent);
 		this.elem.age = document.createElement('span');
+		this.elem.age.setAttribute('data-edit','age')
 
 		this.elem.age.textContent = `Вік: ${this.age}`;
 
