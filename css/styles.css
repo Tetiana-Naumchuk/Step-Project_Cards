@@ -37,8 +37,6 @@ input.submit {
 	background-color: #fffafa;
 	border-radius: 8px;
 	cursor: pointer;
-	/* background-color: #66b3ff; */
-	/* background-color: #80c1ff; */
 	background-color: #99ccff;
 }
 
@@ -69,7 +67,6 @@ input.submit:hover {
 }
 
 .form form {
-	/* background-color: rgb(232, 232, 232); */
 	background-color: #ccffff;
 	box-shadow: rgba(0, 0, 0, 0.2) 0 12px 28px 0;
 	border-radius: 8px;
@@ -107,7 +104,6 @@ input.submit:hover {
 
 .inputs-container h3 {
 	text-align: center;
-	/* color: #525252; */
 	color: #0000b3;
 	font-size: 20px;
 }
@@ -242,8 +238,6 @@ input.submit {
 	margin-top: 25px;
 	position: relative;
 	padding-bottom: 5px;
-	/* background-color: #e6fffa; */
-	background-color: #ccffff;
 }
 
 .visit__text,
@@ -255,25 +249,40 @@ input.submit {
 	margin: 0 auto;
 	width: 56%;
 }
+
 .visit__delete {
 	position: absolute;
 	top: 2px;
 	right: 2px;
 	cursor: pointer;
 }
+
 .visit__edit {
 	position: absolute;
 	top: 2px;
 	right: 30px;
+	cursor: pointer;
 }
+
 .visit__btn-hide {
 	display: none;
 }
+
 .visit__person,
 .visit__text-doctor {
 	font-size: 18px;
 	font-weight: bold;
 	color: #0000b3;
 }
-.peson-info-container {
+
+.visit__text-doctor {
+	padding-left: 15%;
+	/* text-align: center; */
+}
+
+.doctor-img {
+	position: absolute;
+	border-radius: 25px;
+	left: 6px;
+	top: 30px;
 }

@@ -17,6 +17,7 @@ export class Visit {
 			self: this.cardWrap,
 			deleteImg: this.cardWrap.querySelector('.visit__delete'),
 			fullName: this.cardWrap.querySelector('.visit__person'),
+			doctorImg: this.cardWrap.querySelector('.doctor-img'),
 			doctor: this.cardWrap.querySelector('.visit__text-doctor'),
 			origins: this.cardWrap.querySelector('.visit__text-origins'),
 			purposeVisit: this.cardWrap.querySelector('.visit__text-purpose'),
@@ -47,6 +48,7 @@ export class Visit {
 		this.elem.deleteImg;
 		this.elem.fullName.textContent = this.name;
 		this.elem.doctor.textContent = `Лікар: ${this.doctor}`;
+		this.elem.doctorImg;
 		this.elem.origins.textContent = `Терміновість: ${this.origins}`;
 		this.elem.purposeVisit.textContent = `Мета візиту: ${this.purposeVisit}`;
 		this.elem.description.textContent = `Короткий опис візиту: ${this.description}`;
@@ -102,6 +104,7 @@ export class VisitCardiologist extends Visit {
 
 	render(parent) {
 		super.render(parent);
+		this.elem.self.style.backgroundColor = '#ffcccc';
 		this.elem.pressure = document.createElement('span');
 		this.elem.indexMassa = document.createElement('span');
 		this.elem.ill = document.createElement('span');
@@ -138,6 +141,7 @@ export class VisitDentist extends Visit {
 
 	render(parent) {
 		super.render(parent);
+		this.elem.self.style.backgroundColor = '#b3ffb3';
 		this.elem.lastVisit = document.createElement('span');
 
 		this.elem.lastVisit.textContent = `Дата останнього візиту: ${this.lastVisit}`;
@@ -165,6 +169,7 @@ export class VisitTherapist extends Visit {
 
 	render(parent) {
 		super.render(parent);
+		this.elem.self.style.backgroundColor = '#ccffff';
 		this.elem.age = document.createElement('span');
 
 		this.elem.age.textContent = `Вік: ${this.age}`;
