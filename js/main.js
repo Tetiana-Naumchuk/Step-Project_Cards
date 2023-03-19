@@ -5,7 +5,6 @@ import { VisitDentist, VisitTherapist, VisitCardiologist } from './Visit.js';
 import Filter from "./Filter.js";
 
 export const headerBtn = document.querySelector('.header-btn')
-// new Filter().makeFilter()
 
 const filter = document.querySelector('.filter')
 filter.addEventListener('submit', (event) => {
@@ -36,8 +35,8 @@ if (localStorage.getItem('token')) {
 
 headerBtn.addEventListener('click', () => {
     if (headerBtn.textContent === "Вхід") {
-        document.body.prepend(new Modal().enter())
+        new Modal(document.body).enter()
     } else{
-        document.body.prepend(new Modal().visit())
+        new Modal(document.body).visitCreateNew()
     }
 })
