@@ -202,7 +202,7 @@ input.submit {
 	flex-direction: column;
 	row-gap: 15px;
 }
-.additional-info > div{
+.additional-info__item{
 	display: none;
 }
 
@@ -268,3 +268,6 @@ input.submit {
 	font-weight: bold;
 	color: #808080;
 }
+ .active{
+	display: block
+ }

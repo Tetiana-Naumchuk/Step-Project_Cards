@@ -62,7 +62,7 @@ export default class Modal {
 		dopInfoWrapper.className = 'additional-info';
 
 		const cardioContainer = document.createElement('div')
-
+		cardioContainer.className = 'additional-info__item'
 		this.pressure = document.createElement('input');
 		this.pressure.placeholder = 'Звичайний тиск';
 		this.pressure.value= pressure
@@ -83,6 +83,7 @@ export default class Modal {
 		cardioContainer.append(this.pressure, this.indexMassa, this.ill, this.age);
 
 		const dentistContainer = document.createElement('div')
+		dentistContainer.className = 'additional-info__item'
 		this.lastVisit = document.createElement('input');
 		this.lastVisit.setAttribute('type', 'date');
 		this.lastVisit.placeholder = 'Дата останнього візиту';
@@ -90,6 +91,7 @@ export default class Modal {
 		dentistContainer.append(this.lastVisit);
 
 		const therapistContainer = document.createElement('div')
+		therapistContainer.className = 'additional-info__item'
 		this.age = document.createElement('input');
 		this.age.setAttribute('type', 'number');
 		this.age.placeholder = 'Вік';
@@ -99,34 +101,34 @@ export default class Modal {
 		
 		if (doctor === '') {
 			this.selectDoctor.querySelector(`[value='Стоматолог']`).selected = "selected"
-			dentistContainer.style.display = 'block'
+			dentistContainer.classList.add('active')
 		} else {
 			this.selectDoctor.querySelector(`[value='${doctor}']`).selected = "selected"
 			switch (doctor) {
 			case 'Кардіолог':
-					cardioContainer.style.display = 'block'
+					cardioContainer.classList.add('active')
 				break;
 				case 'Стоматолог':
-					dentistContainer.style.display = 'block'
+					dentistContainer.classList.add('active')
 				break;
 				case 'Терапевт':
-					 therapistContainer.style.display = 'block'
+					 therapistContainer.classList.add('active')
 				break;
 			}
 		}
 
 		this.selectDoctor.addEventListener('change', () => {
-			const active = dopInfoWrapper.querySelector('active')
+			const active = dopInfoWrapper.querySelector('.active')
 			active.classList.remove('active')
 			switch (doctor) {
 			case 'Кардіолог':
-					cardioContainer.style.display = 'block'
+					cardioContainer.classList.add('active')
 				break;
 				case 'Стоматолог':
-					dentistContainer.style.display = 'block'
+					dentistContainer.classList.add('active')
 				break;
 				case 'Терапевт':
-					 therapistContainer.style.display = 'block'
+					 therapistContainer.classList.add('active')
 				break;
 		}
 		})
