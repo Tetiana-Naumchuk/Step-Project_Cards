@@ -1,7 +1,5 @@
 const URL = 'https://ajax.test-danit.com/api/v2/cards/';
 
-const token = localStorage.getItem('token');
-
 export default class Requests {
 	static enter(object) {
 		return fetch(URL + 'login', {
@@ -13,43 +11,43 @@ export default class Requests {
 		}).then(response => response.text());
 	}
 
-	static get(id = '') {
+    static get(id = '') {
 		return fetch(URL + id, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 		}).then(response => response.json());
 	}
 
-	static post(object) {
+    static post(object) {
 		return fetch(URL, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 			body: JSON.stringify(object),
 		}).then(response => response.json());
 	}
 
-	static put(object, id, token) {
+    static put(object, id) {
 		return fetch(URL + id, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 			body: JSON.stringify(object),
 		}).then(response => response.json());
 	}
 
-	static delete(id) {
+    static delete(id) {
 		return fetch(URL + id, {
 			method: 'DELETE',
 			headers: {
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 		});
 	}

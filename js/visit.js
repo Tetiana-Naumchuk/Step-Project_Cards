@@ -157,7 +157,27 @@ export class VisitTherapist extends Visit {
     }
 }
 
-
+export class Cards{
+    renderAll() {
+        Requests.get().then(cardsArray => {
+        if (cardsArray.length === 0) {
+            cardContainer.textContent = 'Записів до лікарів на цей час немає'
+        } else {            
+            cardContainer.textContent = ''
+            cardsArray.forEach(card => {
+                const { doctor } = card
+                if (doctor === 'Стоматолог') {
+                    new VisitDentist(card).render(cardContainer)
+                } else if (doctor === 'Кардіолог') {
+                    new VisitCardiologist(card).render(cardContainer)
+                } else if (doctor === 'Терапевт') {
+                    new VisitTherapist(card).render(cardContainer)
+                } 
+            })
+        }
+    })
+    }
+}
 
 
 

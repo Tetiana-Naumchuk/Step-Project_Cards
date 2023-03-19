@@ -49,8 +49,7 @@ input.submit:hover {
 
 .form {
 	position: fixed;
-	z-index: -100;
-	opacity: 0;
+	z-index: 100;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -59,11 +58,6 @@ input.submit:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-.active-form {
-	z-index: 100;
-	opacity: 1;
 }
 
 .form form {

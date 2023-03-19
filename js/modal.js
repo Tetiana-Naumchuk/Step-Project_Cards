@@ -1,6 +1,6 @@
 import Requests from './Requests.js';
 import { headerBtn } from './main.js';
-import { VisitDentist, VisitTherapist, VisitCardiologist } from './Visit.js';
+import { VisitDentist, VisitTherapist, VisitCardiologist, Cards } from './Visit.js';
 
 export const cardContainer = document.querySelector('.cards-container');
 
@@ -11,13 +11,12 @@ export default class Modal {
 		this.formWrap = formEnterTemplate.querySelector('.form').cloneNode(true);
 		this.form = this.formWrap.querySelector('form');
 		this.inputsContainer = this.formWrap.querySelector('.inputs-container');
-		this.formWrap.classList.add('active-form');
 		this.formWrap.addEventListener('click', event => {
 			if (
 				event.target.classList.contains('form') ||
 				event.target.classList.contains('close-form')
 			) {
-				this.formWrap.classList.remove('active-form');
+				this.formWrap.remove();
 			}
 		});
 		this.container.prepend(this.formWrap)
@@ -35,10 +34,12 @@ export default class Modal {
 				email,
 				password,
 			};
-			Requests.enter(userData).then(token => localStorage.setItem('token', token));
-			headerBtn.textContent = 'Створити візит';
-			this.formWrap.classList.remove('active-form');
-			this.inputsContainer.innerHTML = '';
+			Requests.enter(userData).then(token => {
+				localStorage.setItem('token', token)
+				this.formWrap.remove();
+				headerBtn.textContent = 'Створити візит';
+				new Cards().renderAll()
+			})
 		});
 	}
 
@@ -207,9 +208,7 @@ export default class Modal {
 			}
 
 			Requests.post(visit).then(data => {
-				this.formWrap.classList.remove('active-form');
-				this.inputsContainer.innerHTML = '';
-
+				this.formWrap.remove();
 				const { doctor } = data;
 				if (doctor === 'Стоматолог') {
 					new VisitDentist(data).render(cardContainer);
@@ -252,8 +251,7 @@ export default class Modal {
 				default:
 					break;
 			}
-			this.formWrap.classList.remove('active-form');
-			this.inputsContainer.innerHTML = '';
+			this.formWrap.remove()
 
 			Requests.put(visit,id).then(visitEditObj => {
 				const cardForEdit = cardContainer.querySelector(`[data-id="${id}"]`)
