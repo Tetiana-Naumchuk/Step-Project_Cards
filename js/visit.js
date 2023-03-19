@@ -26,8 +26,7 @@ export class Visit {
         };
         this.elem.editImg.addEventListener('click', event => {
             console.log(data);
-            const modal = new Modal().visitEdit(data);
-            console.log(modal);
+            new Modal(document.body).visitEdit(data);
         });
         this.elem.deleteImg.addEventListener('click', event => {
             Requests.delete(this.id).then(response => {

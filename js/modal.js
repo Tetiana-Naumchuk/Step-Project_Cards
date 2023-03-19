@@ -120,7 +120,7 @@ export default class Modal {
 		this.selectDoctor.addEventListener('change', () => {
 			const active = dopInfoWrapper.querySelector('.active')
 			active.classList.remove('active')
-			switch (doctor) {
+			switch (this.selectDoctor.value) {
 			case 'Кардіолог':
 					cardioContainer.classList.add('active')
 				break;
