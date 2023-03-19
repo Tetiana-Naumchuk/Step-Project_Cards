@@ -6,7 +6,7 @@
 
 body {
 	font-family: 'Montserrat', sans-serif;
-	background-color: #f0f0f0;
+	background: url(/img/background.jpg);
 }
 
 header {
@@ -28,7 +28,7 @@ header {
 button,
 input.submit {
 	font-weight: 500;
-	color: #696969;
+	color: #0000b3;
 	padding: 15px 10px;
 	align-self: center;
 	font-size: 18px;
@@ -37,13 +37,16 @@ input.submit {
 	background-color: #fffafa;
 	border-radius: 8px;
 	cursor: pointer;
+	/* background-color: #66b3ff; */
+	/* background-color: #80c1ff; */
+	background-color: #99ccff;
 }
 
 button:hover,
 input.submit:hover {
 	box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.5), 10px 10px 15px rgba(70, 70, 70, 0.12),
 		inset -10px -10px 15px rgba(255, 255, 255, 0.5), inset 10px 10px 15px rgba(70, 70, 70, 0.12);
-	color: #3a3a3a;
+	color: #0000b3;
 }
 
 .form {
@@ -66,7 +69,8 @@ input.submit:hover {
 }
 
 .form form {
-	background-color: rgb(232, 232, 232);
+	/* background-color: rgb(232, 232, 232); */
+	background-color: #ccffff;
 	box-shadow: rgba(0, 0, 0, 0.2) 0 12px 28px 0;
 	border-radius: 8px;
 	width: 450px;
@@ -103,7 +107,8 @@ input.submit:hover {
 
 .inputs-container h3 {
 	text-align: center;
-	color: #525252;
+	/* color: #525252; */
+	color: #0000b3;
 	font-size: 20px;
 }
 
@@ -112,7 +117,8 @@ input.submit:hover {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 13px;
 	padding: 5px;
-	border: 0.2px solid #cecece;
+	color: #00004d;
+	border: 0.2px solid#99d6ff;
 	border-radius: 8px;
 	display: block;
 	width: 100%;
@@ -160,6 +166,8 @@ input.submit {
 	border-radius: 5px;
 	box-shadow: 5px 5px 15px rgba(70, 70, 70, 0.3);
 	cursor: pointer;
+	background-color: #99ccff;
+	color: #00004d;
 }
 
 #find:hover {
@@ -189,12 +197,12 @@ input.submit {
 	min-height: calc(100vh - 180px);
 	margin-top: 15px;
 	margin-inline: 50px;
-	background-color: white;
+	background: white;
 	border: 0.2px solid #cecece;
 	border-radius: 8px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }
 
 .additional-info {
@@ -222,16 +230,11 @@ input.submit {
 	width: 138px;
 }
 
-.cards-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-}
 .card {
 	display: grid;
 	gap: 20px;
 	font-size: 15px;
-	border: 1px solid #cecece;
+	border: 1px solid #99d6ff;
 	border-radius: 15px;
 	padding: 10px;
 	width: 30%;
@@ -239,7 +242,15 @@ input.submit {
 	margin-top: 25px;
 	position: relative;
 	padding-bottom: 5px;
+	/* background-color: #e6fffa; */
+	background-color: #ccffff;
 }
+
+.visit__text,
+.visit__text-add {
+	color: #00004d;
+}
+
 .visit__btn {
 	margin: 0 auto;
 	width: 56%;
@@ -262,5 +273,7 @@ input.submit {
 .visit__text-doctor {
 	font-size: 18px;
 	font-weight: bold;
-	color: #808080;
+	color: #0000b3;
+}
+.peson-info-container {
 }
