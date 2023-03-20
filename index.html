@@ -15,28 +15,30 @@
         <button class="header-btn">Вхід</button>
     </header>
     <main>
-        <form class="filter">
-            <input id="visit-text" type="text" placeholder="Введіть заголовок/вміст візиту">
-            <div>
-                <label for="doctor">Лікар</label>
-                <select id="doctor">
-                    <option value="">Всі</option>
-                    <option>Кардіолог</option>
-                    <option>Стоматолог</option>
-                    <option>Терапевт</option>
-                </select>
-            </div>
-            <div>
-                <label for="urgency">Терміновість візиту</label>
-                <select name="" id="urgency">
-                    <option value="">Всі</option>
-                    <option>Невідкладна</option>
-                    <option>Пріорітетна</option>
-                    <option>Звичайна</option>
-                </select>
-            </div>
-            <input id="find" type="submit" value="Пошук">
-        </form>
+        <nav class="filter-wrap">
+            <form class="filter">
+                <input id="visit-text" type="text" placeholder="Введіть заголовок/вміст візиту">
+                <div>
+                    <label for="doctor">Лікар</label>
+                    <select id="doctor">
+                        <option value="">Всі</option>
+                        <option>Кардіолог</option>
+                        <option>Стоматолог</option>
+                        <option>Терапевт</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="urgency">Терміновість візиту</label>
+                    <select name="" id="urgency">
+                        <option value="">Всі</option>
+                        <option>Невідкладна</option>
+                        <option>Пріорітетна</option>
+                        <option>Звичайна</option>
+                    </select>
+                </div>
+                <input id="find" type="submit" value="Пошук">
+            </form>
+        </nav>
         <div class="cards-container">
         </div>
     </main>
@@ -59,7 +61,7 @@
             <img class="visit__delete" src="./img/delete.png" alt="delete" width="25" height="25" />
             <p data-edit="name" class="visit__person"></p>
             <span data-edit="doctor" name="doctor" class="visit__text visit__text-doctor"></span>
-            <img class='doctor-img'src="./img/doctor.png" alt="">
+            <img class='.doctor-img'src="./img/doctor.png" alt="">
             <span data-edit="origins" name="urgency" class="visit__text visit__text-origins"></span>
             <span data-edit="purposeVisit" name="text" class="visit__text visit__text-purpose"></span>
             <p data-edit="description" name="text" class="visit__text visit__text-desc"></p>

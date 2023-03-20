@@ -1,6 +1,6 @@
 import Requests from './Requests.js';
-import { cardContainer } from './modal.js';
-import Modal from './modal.js';
+import { cardContainer } from './Modal.js';
+import Modal from './Modal.js';
 export class Visit {
     constructor(data) {
         this.id = data.id;
@@ -24,11 +24,10 @@ export class Visit {
             showMoreBtn: this.cardWrap.querySelector('.visit__btn-more'),
             hideBtn: this.cardWrap.querySelector('.visit__btn-hide'),
         };
-        this.elem.editImg.addEventListener('click', event => {
-            console.log(data);
+        this.elem.editImg.addEventListener('click', () => {
             new Modal(document.body).visitEdit(data);
         });
-        this.elem.deleteImg.addEventListener('click', event => {
+        this.elem.deleteImg.addEventListener('click', () => {
             Requests.delete(this.id).then(response => {
                 if (response.status === 200) {
                     this.elem.self.remove();
