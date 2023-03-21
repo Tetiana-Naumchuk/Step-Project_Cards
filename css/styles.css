@@ -266,7 +266,7 @@ input.submit:hover {
 	border-radius: 5px;
 }
 
-.card__show-more, .visit__add-info-cardio, .visit__add-info-dentist, .visit__add-info-therapis{
+.card__show-more, .visit__add-info-cardio, .visit__add-info-dentist, .visit__add-info-therapist{
 	display: none;
 }
 

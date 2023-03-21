@@ -64,20 +64,19 @@ export default class Modal {
 	}
 
 	visitEdit(visitObject) {
-		const { doctor, name, origins, purposeVisit, description, pressure, indexMassa, ill, age, lastVisit, id} = visitObject
+		const { doctor, name, origins, purposeVisit, description, pressure, indexMassa, ill, age, lastVisit, id } = visitObject
+		console.log(visitObject);
 		this._renderVisitModal('Відкоригуйте необхідну інформацію про візит', doctor, name, origins, purposeVisit, description, pressure, indexMassa, ill, age, lastVisit)
 		this.form.addEventListener('submit', e => {
 			e.preventDefault();
-
 			const visit = this._createVisitObject()
-			console.log(visit);
 			Requests.put(visit, id).then(visitEditObj => {
 				this.formWrap.remove()
+				const { doctor } = visitEditObj
 				console.log(visitEditObj);
 				const cardForEdit = cardContainer.querySelector(`[data-id="${id}"]`)
 				const addInfo = cardForEdit.querySelectorAll('.visit__add-info')
 				addInfo.forEach(doctorContainer => doctorContainer.classList.remove('active'))
-				console.log(cardForEdit);
 				for (let key in visitEditObj) {
 					if (key !== 'id') {
 						const elemForEdit = cardForEdit.querySelector(`[data-edit="${key}"]`)
@@ -193,11 +192,16 @@ export default class Modal {
 
 		const therapistContainer = document.createElement('div')
 		therapistContainer.className = 'additional-info__item'
-		therapistContainer.append(labelAge);
+		this.ageTherapist = document.createElement('input');
+		this.ageTherapist.placeholder = 'Вік';
+		this.ageTherapist.value = age
+		const labelAgeTherapist = document.createElement('label')
+		labelAgeTherapist.textContent = 'Вік пацієнта:'
+		labelAgeTherapist.append(this.ageTherapist)
+		therapistContainer.append(labelAgeTherapist);
 		dopInfoWrapper.append(cardioContainer, dentistContainer, therapistContainer)
 		dopInfoWrapper.querySelectorAll('input').forEach(input => {
 			input.required = false
-			console.log(input);
 		}
 	)
 		if (doctor === '') {
