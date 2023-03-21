@@ -1,6 +1,7 @@
 import Requests from './Requests.js';
 import { headerBtn } from './main.js';
 import { VisitDentist, VisitTherapist, VisitCardiologist, Cards } from './Visit.js';
+import Filter from './Filter.js';
 
 export const cardContainer = document.querySelector('.cards-container');
 
@@ -69,17 +70,33 @@ export default class Modal {
 			e.preventDefault();
 
 			const visit = this._createVisitObject()
-
+			console.log(visit);
 			Requests.put(visit, id).then(visitEditObj => {
 				this.formWrap.remove()
+				console.log(visitEditObj);
 				const cardForEdit = cardContainer.querySelector(`[data-id="${id}"]`)
+				const addInfo = cardForEdit.querySelectorAll('.visit__add-info')
+				addInfo.forEach(doctorContainer => doctorContainer.classList.remove('active'))
 				console.log(cardForEdit);
 				for (let key in visitEditObj) {
-					const elemForEdit = cardForEdit.querySelector(`[data-edit="${key}"]`)
-					elemForEdit.textContent = visitEditObj[key]
-					console.log(key);
+					if (key !== 'id') {
+						const elemForEdit = cardForEdit.querySelector(`[data-edit="${key}"]`)
+						elemForEdit.textContent = visitEditObj[key]
+					}
 				}
-			}).catch(err => alert(err.message));
+				if (doctor === 'Стоматолог') {
+					cardForEdit.querySelector('.visit__add-info-dentist').classList.add('active')
+					cardForEdit.style.backgroundColor = '#B3FFB3';
+				} else if (doctor === 'Кардіолог') {
+					cardForEdit.querySelector('.visit__add-info-cardio').classList.add('active')
+					cardForEdit.style.backgroundColor = '#CDD2F7'
+				} else if (doctor === 'Терапевт') {
+					cardForEdit.querySelector('.visit__add-info-therapist').classList.add('active')
+					cardForEdit.style.backgroundColor = '#CCFFFF'
+				}
+				new Filter().makeFilter()
+			})
+				// .catch(err => alert(err.message));
 		});
 	}
 
@@ -178,7 +195,11 @@ export default class Modal {
 		therapistContainer.className = 'additional-info__item'
 		therapistContainer.append(labelAge);
 		dopInfoWrapper.append(cardioContainer, dentistContainer, therapistContainer)
-		
+		dopInfoWrapper.querySelectorAll('input').forEach(input => {
+			input.required = false
+			console.log(input);
+		}
+	)
 		if (doctor === '') {
 			this.selectDoctor.querySelector(`[value='Стоматолог']`).selected = "selected"
 			dentistContainer.classList.add('active')
@@ -189,15 +210,15 @@ export default class Modal {
 			case 'Кардіолог':
 					cardioContainer.classList.add('active')
 					cardioContainer.querySelectorAll('input').forEach(input=>input.required = true)
-				break;
-				case 'Стоматолог':
-					dentistContainer.classList.add('active')
-					dentistContainer.querySelector('input').required = true;
-				break;
-				case 'Терапевт':
-					therapistContainer.classList.add('active')
-					dentistContainer.querySelector('input').required = true;
-				break;
+			break;
+			case 'Стоматолог':
+				dentistContainer.classList.add('active')
+				dentistContainer.querySelector('input').required = true;
+			break;
+			case 'Терапевт':
+				therapistContainer.classList.add('active')
+				dentistContainer.querySelector('input').required = true;
+			break;
 			}
 		}
 

@@ -22,22 +22,23 @@ export default class Filter{
         Array.from(cardsCollection).forEach(card => {
             let cardCheck = 0
             if (Object.keys(newFilter).length === 0) {
-                    card.style.display = 'grid'
-            }
-            for (let key in newFilter) {
-                let cardString = ''
-                card.querySelectorAll(`[name="${key}"]`).forEach(elem => {
-                    cardString += elem.textContent.split(':')[1]
-                })
-                if (cardString.includes(newFilter[key])) {
-                        cardCheck++
-                } 
-            }
-            if (cardCheck === Object.keys(newFilter).length) {
-                card.style.display = 'grid'
+                    card.style.display = 'block'
             } else {
-                card.style.display = 'none'
-            }    
+                for (let key in newFilter) {
+                    let cardString = ''
+                    card.querySelectorAll(`[name="${key}"]`).forEach(elem => {
+                        cardString += (elem.textContent + " ")
+                    })
+                    if (cardString.includes(newFilter[key])) {
+                            cardCheck++
+                    } 
+                }
+                if (cardCheck === Object.keys(newFilter).length) {
+                    card.style.display = 'grid'
+                } else {
+                    card.style.display = 'none'
+                }    
+            }
         })
     }
 }

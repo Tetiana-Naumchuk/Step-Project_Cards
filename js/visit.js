@@ -1,158 +1,116 @@
 import Requests from './Requests.js';
 import { cardContainer } from './Modal.js';
 import Modal from './Modal.js';
+
 export class Visit {
     constructor(data) {
-        this.id = data.id;
-        this.doctor = data.doctor;
-        this.purposeVisit = data.purposeVisit;
-        this.description = data.description;
-        this.origins = data.origins;
-        this.name = data.name;
+        this.data = data     
         const cardTemplate = document.querySelector('#card-template').content;
         this.cardWrap = cardTemplate.querySelector('.card').cloneNode(true);
         this.elem = {
-            self: this.cardWrap,
             deleteImg: this.cardWrap.querySelector('.visit__delete'),
+            editImg: this.cardWrap.querySelector('.visit__edit'),
             fullName: this.cardWrap.querySelector('.visit__person'),
-            doctorImg: this.cardWrap.querySelector('.doctor-img'),
             doctor: this.cardWrap.querySelector('.visit__text-doctor'),
             origins: this.cardWrap.querySelector('.visit__text-origins'),
             purposeVisit: this.cardWrap.querySelector('.visit__text-purpose'),
             description: this.cardWrap.querySelector('.visit__text-desc'),
-            editImg: this.cardWrap.querySelector('.visit__edit'),
-            showMoreBtn: this.cardWrap.querySelector('.visit__btn-more'),
-            hideBtn: this.cardWrap.querySelector('.visit__btn-hide'),
+            showMoreBtn: this.cardWrap.querySelector('.visit__btn'),
+            addInfo: this.cardWrap.querySelector('.card__show-more')
         };
-        this.elem.editImg.addEventListener('click', () => {
-            new Modal(document.body).visitEdit(data);
-        });
-        this.elem.deleteImg.addEventListener('click', () => {
-            Requests.delete(this.id).then(response => {
-                if (response.status === 200) {
-                    this.elem.self.remove();
-                    const renderedVisits = document.querySelectorAll('.card');
-                    if (!renderedVisits || renderedVisits.length === 0) {
-                        const noItem = document.createElement('p');
-                        noItem.id = 'empty';
-                        noItem.textContent = 'No item has been added';
-                        noItem.style.marginTop = '50px';
-                        cardContainer.append(noItem);
-                    }
-                }
-            });
-        });
     }
     render(parent) {
-        this.elem.deleteImg;
-        this.elem.fullName.textContent = this.name;
-        this.elem.doctor.textContent = `Лікар: ${this.doctor}`;
-        this.elem.doctorImg;
-        this.elem.origins.textContent = `Терміновість: ${this.origins}`;
-        this.elem.purposeVisit.textContent = `Мета візиту: ${this.purposeVisit}`;
-        this.elem.description.textContent = `Короткий опис візиту: ${this.description}`;
-        this.elem.editImg;
-        this.elem.showMoreBtn.textContent = 'Показати більше';
-        this.elem.hideBtn.textContent = 'Приховати';
-        this.elem.self.dataset.id = this.id;
-        parent.append(this.elem.self);
-    }
-    showMore() {
-        const moreInfo = [];
-        for (let key in this.elem) {
-            if (
-                key !== 'self' &&
-                key !== 'deleteImg' &&
-                key !== 'editImg' &&
-                key !== 'showMoreBtn' &&
-                key !== 'hideBtn'
-            ) {
-                moreInfo.push(this.elem[key]);
-            }
-        }
-        moreInfo.forEach(item => {
-            this.elem.self.insertBefore(item, this.elem.showMoreBtn);
+        const { id, name, doctor, origins, purposeVisit, description } = this.data
+        
+        this.elem.fullName.textContent = name;
+        this.elem.doctor.textContent = doctor;
+        this.elem.origins.textContent = origins;
+        this.elem.purposeVisit.textContent = purposeVisit;
+        this.elem.description.textContent = description;
+        this.cardWrap.dataset.id = id;
+        
+        this.elem.editImg.addEventListener('click', () => {
+            new Modal(document.body).visitEdit(this.data);
         });
-        this.elem.showMoreBtn.style.display = 'none';
-        this.elem.hideBtn.style.display = 'inline-block';
-    }
-    hide() {
-        this.elem.self.querySelectorAll('.visit__text-add').forEach(item => {
-            this.elem.self.removeChild(item);
+
+        this.elem.deleteImg.addEventListener('click', () => {
+            Requests.delete(id).then(response => {
+                const { ok } = response
+                if (ok) {
+                    this.cardWrap.remove()
+                    const renderedVisits = document.querySelectorAll('.card');
+                    if (!renderedVisits || renderedVisits.length === 0) {
+                        cardContainer.textContent = 'Записів до лікарів на цей час немає'
+                    }
+                } else {
+                    throw new Error("Наразі неможливо отримати дані з сервера")
+                }
+            })
         });
-        this.elem.hideBtn.style.display = 'none';
-        this.elem.showMoreBtn.style.display = 'inline-block';
-    }
-    showHideBtn() {
+
         this.elem.showMoreBtn.addEventListener('click', () => {
-            this.showMore();
-        });
-        this.elem.hideBtn.addEventListener('click', () => {
-            this.hide();
-        });
+            if (this.elem.addInfo.classList.contains('active')) {
+                this.elem.showMoreBtn.textContent = 'Показати більше'
+                this.elem.addInfo.classList.remove('active')
+            } else {
+                this.elem.addInfo.classList.add('active')
+                this.elem.showMoreBtn.textContent = 'Приховати'
+            }
+        })
+        parent.append(this.cardWrap);
     }
 }
+
+
 export class VisitCardiologist extends Visit {
     constructor(data) {
         super(data);
-        this.pressure = data.pressure;
-        this.indexMassa = data.indexMassa;
-        this.ill = data.ill;
-        this.age = data.age;
+        this.elem.cardioContainer = this.cardWrap.querySelector('.visit__add-info-cardio')
+        this.elem.pressure = this.elem.cardioContainer.querySelector('.visit__text-pressure')
+        this.elem.indexMassa = this.elem.cardioContainer.querySelector('.visit__text-imassa')
+        this.elem.ill = this.elem.cardioContainer.querySelector('.visit__ill')
+        this.elem.age = this.elem.cardioContainer.querySelector('.visit__age')
     }
     render(parent) {
         super.render(parent);
-        this.elem.self.style.backgroundColor = '#FFCCCC';
-        this.elem.pressure = document.createElement('span');
-        this.elem.indexMassa = document.createElement('span');
-        this.elem.ill = document.createElement('span');
-        this.elem.age = document.createElement('span');
-        this.elem.pressure.textContent = `Тиск: ${this.pressure}`;
-        this.elem.indexMassa.textContent = `Індекс маси тіла: ${this.indexMassa}`;
-        this.elem.ill.textContent = `Перенесені захворювання серця: ${this.ill}`;
-        this.elem.age.textContent = `Вік: ${this.age}`;
-        this.elem.pressure.classList.add('visit__text-add');
-        this.elem.indexMassa.classList.add('visit__text-add');
-        this.elem.ill.classList.add('visit__text-add');
-        this.elem.age.classList.add('visit__text-add');
-        this.showHideBtn();
-    }
-    hide() {
-        super.hide();
+        const {pressure, indexMassa, ill, age} = this.data
+        this.cardWrap.style.backgroundColor = '#B9C4F7';
+        this.elem.pressure.textContent = pressure;
+        this.elem.indexMassa.textContent = indexMassa;
+        this.elem.ill.textContent = ill;
+        this.elem.age.textContent = age;
+        this.elem.cardioContainer.classList.add('active')
     }
 }
+
 export class VisitDentist extends Visit {
     constructor(data) {
         super(data);
-        this.lastVisit = data.lastVisit;
+        this.elem.dentistContainer = this.cardWrap.querySelector('.visit__add-info-dentist')
+        this.elem.lastVisit = this.elem.dentistContainer.querySelector('.visit__date')
     }
     render(parent) {
         super.render(parent);
-        this.elem.self.style.backgroundColor = '#B3FFB3';
-        this.elem.lastVisit = document.createElement('span');
-        this.elem.lastVisit.textContent = `Дата останнього візиту: ${this.lastVisit}`;
-        this.elem.lastVisit.classList.add('visit__text-add');
-        this.showHideBtn();
+        const {lastVisit} = this.data
+        this.cardWrap.style.backgroundColor = '#B3FFB3';
+        this.elem.lastVisit.textContent = lastVisit;
+        this.elem.dentistContainer.classList.add('active')
     }
-    hide() {
-        super.hide();
-    }
+
 }
+
 export class VisitTherapist extends Visit {
     constructor(data) {
         super(data);
-        this.age = data.age;
+        this.elem.therapistContainer = this.cardWrap.querySelector('.visit__add-info-therapist')
+        this.elem.age = this.elem.therapistContainer.querySelector('.visit__age')
     }
     render(parent) {
         super.render(parent);
-        this.elem.self.style.backgroundColor = '#CCFFFF';
-        this.elem.age = document.createElement('span');
-        this.elem.age.textContent = `Вік: ${this.age}`;
-        this.elem.age.classList.add('visit__text-add');
-        this.showHideBtn();
-    }
-    hide() {
-        super.hide();
+        const {age} = this.data
+        this.cardWrap.style.backgroundColor = '#CCFFFF';
+        this.elem.age.textContent = age;
+        this.elem.therapistContainer.classList.add('active')
     }
 }
 

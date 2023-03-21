@@ -150,12 +150,6 @@ input.submit:hover {
 	display: none;
 }
 
-.active {
- 	display: flex;
- 	flex-direction: column;
- 	row-gap: 10px;
- }
-
 .filter-wrap{
 	background-color: rgba(101, 235, 183, 0.5);
 	padding-block: 10px;
@@ -240,88 +234,44 @@ input.submit:hover {
 	border-radius: 8px;
 	display: flex;
 	flex-wrap: wrap;
+	align-items: flex-start;
+	column-gap: 30px;
 	row-gap: 30px;
-	justify-content: space-between;
 	padding: 30px;
 }
 
-.div-createVisit {
-	z-index: 100;
-	opacity: 1;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(253, 246, 246, 0.8);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.selectOrigins,
-.selectDoctor {
-	width: 138px;
-}
-
 .card {
-	display: grid;
-	gap: 20px;
-	font-size: 15px;
+	height: auto;
+	min-width: 30%;
+	font-size: 13px;
 	border: 1px solid #99d6ff;
 	border-radius: 15px;
-	padding: 10px;
-	width: 30%;
-	height: 35%;
-	position: relative;
-	padding-bottom: 5px;
+	padding: 5px;
 }
 
-.visit__text,
-.visit__text-add {
-	color: #00004d;
-}
-
-.visit__btn {
-	margin: 0 auto;
-	width: 56%;
-}
-
-.visit__delete {
-	position: absolute;
-	top: 2px;
-	right: 2px;
-	cursor: pointer;
-}
-
-.visit__edit {
-	position: absolute;
-	top: 2px;
-	right: 30px;
-	cursor: pointer;
-}
-
-.visit__btn-hide {
-	display: none;
-}
-
-.visit__person,
-.visit__text-doctor {
-	font-size: 18px;
-	font-weight: bold;
-	color: #0000b3;
-}
-
-.visit__text-doctor {
-	padding-left: 15%;
-	/* text-align: center; */
+.card__main-info{
+	display: flex;
+	justify-content:space-between;
 }
 
 .doctor-img {
-	position: absolute;
 	border-radius: 25px;
-	left: 6px;
-	top: 30px;
 	width: 50px;
 	height: 50px;
+}
+.visit__delete, .visit__edit{
+	height: 20px;
+	width: 20px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.card__show-more, .visit__add-info-cardio, .visit__add-info-dentist, .visit__add-info-therapis{
+	display: none;
+}
+
+.active {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
 }
