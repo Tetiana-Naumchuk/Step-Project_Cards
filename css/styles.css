@@ -145,6 +145,11 @@ input.submit:hover {
 	background-color: rgba(20, 55, 140, 0.8);
 	box-shadow: inset 10px 10px 15px rgba(70, 70, 70, 0.7);
 }
+.additional-info{
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+}
 
 .additional-info__item {
 	display: none;
@@ -273,7 +278,7 @@ input.submit:hover {
 	border-radius: 5px;
 }
 
-.card__show-more, .visit__add-info-cardio, .visit__add-info-dentist, .visit__add-info-therapist{
+.card__show-more, .visit__add-info-cardio, .visit__add-info-dentist, .visit__add-info-age{
 	display: none;
 }
 

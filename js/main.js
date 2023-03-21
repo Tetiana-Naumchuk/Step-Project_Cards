@@ -22,3 +22,4 @@ headerBtn.addEventListener('click', () => {
         new Modal(document.body).visitCreateNew()
     }
 })
+

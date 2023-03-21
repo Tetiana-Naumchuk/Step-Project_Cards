@@ -60,7 +60,13 @@ export class Visit {
         this.cardWrap.dataset.id = id;
         
         this.elem.editImg.addEventListener('click', () => {
-            new Modal(document.body).visitEdit(this.data);
+            const spanCollection = this.cardWrap.querySelectorAll('span')
+            const cardObject = {id: id}
+            spanCollection.forEach(span => {
+                const objKey = span.getAttribute("data-edit")
+                cardObject[objKey] = span.textContent
+            })
+            new Modal(document.body).visitEdit(cardObject);
         });
 
         this.elem.deleteImg.addEventListener('click', () => {
@@ -69,11 +75,11 @@ export class Visit {
                 if (ok) {
                     this.cardWrap.remove()
                     const renderedVisits = document.querySelectorAll('.card');
-                    if (!renderedVisits || renderedVisits.length === 0) {
+                    if (renderedVisits.length === 0) {
                         cardContainer.textContent = 'Записів до лікарів на цей час немає'
                     }
                 } else {
-                    throw new Error("Наразі неможливо отримати дані з сервера")
+                    throw new Error("Наразі неможливо видалення запису")
                 }
             })
         });
@@ -99,7 +105,8 @@ export class VisitCardiologist extends Visit {
         this.elem.pressure = this.elem.cardioContainer.querySelector('.visit__text-pressure')
         this.elem.indexMassa = this.elem.cardioContainer.querySelector('.visit__text-imassa')
         this.elem.ill = this.elem.cardioContainer.querySelector('.visit__ill')
-        this.elem.age = this.elem.cardioContainer.querySelector('.visit__age')
+        this.elem.ageContainer = this.cardWrap.querySelector('.visit__add-info-age')
+        this.elem.age = this.elem.ageContainer.querySelector('.visit__age')
     }
     render(parent) {
         super.render(parent);
@@ -110,6 +117,7 @@ export class VisitCardiologist extends Visit {
         this.elem.ill.textContent = ill;
         this.elem.age.textContent = age;
         this.elem.cardioContainer.classList.add('active')
+        this.elem.ageContainer.classList.add('active')
     }
 }
 
@@ -132,21 +140,22 @@ export class VisitDentist extends Visit {
 export class VisitTherapist extends Visit {
     constructor(data) {
         super(data);
-        this.elem.therapistContainer = this.cardWrap.querySelector('.visit__add-info-therapist')
-        this.elem.age = this.elem.therapistContainer.querySelector('.visit__age')
+        this.elem.ageContainer = this.cardWrap.querySelector('.visit__add-info-age')
+        this.elem.age = this.elem.ageContainer.querySelector('.visit__age')
     }
     render(parent) {
         super.render(parent);
         const {age} = this.data
         this.cardWrap.style.backgroundColor = '#CCFFFF';
         this.elem.age.textContent = age;
-        this.elem.therapistContainer.classList.add('active')
+        this.elem.ageContainer.classList.add('active')
     }
 }
 
 export class Cards{
     renderAll() {
         Requests.get().then(cardsArray => {
+        console.log(cardsArray);
         if (cardsArray.length === 0) {
             cardContainer.textContent = 'Записів до лікарів на цей час немає'
         } else {            

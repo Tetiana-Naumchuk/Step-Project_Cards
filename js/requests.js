@@ -59,11 +59,11 @@ export default class Requests {
 			},
 			body: JSON.stringify(object),
 		}).then(response => {
-            // const { ok } = response
-            // if (ok) {
+            const { ok } = response
+            if (ok) {
                 return response.json()
-            // }
-            // throw new Error("Неможливо зробити коригування запису")
+            }
+            throw new Error("Неможливо зробити коригування запису")
         });
 	}
 
@@ -76,3 +76,5 @@ export default class Requests {
 		});
 	}
 }
+
+Requests.delete(156824).then()

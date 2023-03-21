@@ -65,7 +65,6 @@ export default class Modal {
 
 	visitEdit(visitObject) {
 		const { doctor, name, origins, purposeVisit, description, pressure, indexMassa, ill, age, lastVisit, id } = visitObject
-		console.log(visitObject);
 		this._renderVisitModal('Відкоригуйте необхідну інформацію про візит', doctor, name, origins, purposeVisit, description, pressure, indexMassa, ill, age, lastVisit)
 		this.form.addEventListener('submit', e => {
 			e.preventDefault();
@@ -73,7 +72,6 @@ export default class Modal {
 			Requests.put(visit, id).then(visitEditObj => {
 				this.formWrap.remove()
 				const { doctor } = visitEditObj
-				console.log(visitEditObj);
 				const cardForEdit = cardContainer.querySelector(`[data-id="${id}"]`)
 				const addInfo = cardForEdit.querySelectorAll('.visit__add-info')
 				addInfo.forEach(doctorContainer => doctorContainer.classList.remove('active'))
@@ -88,14 +86,14 @@ export default class Modal {
 					cardForEdit.style.backgroundColor = '#B3FFB3';
 				} else if (doctor === 'Кардіолог') {
 					cardForEdit.querySelector('.visit__add-info-cardio').classList.add('active')
+					cardForEdit.querySelector('.visit__add-info-age').classList.add('active')
 					cardForEdit.style.backgroundColor = '#CDD2F7'
 				} else if (doctor === 'Терапевт') {
-					cardForEdit.querySelector('.visit__add-info-therapist').classList.add('active')
+					cardForEdit.querySelector('.visit__add-info-age').classList.add('active')
 					cardForEdit.style.backgroundColor = '#CCFFFF'
 				}
 				new Filter().makeFilter()
-			})
-				// .catch(err => alert(err.message));
+			}).catch(err => alert(err.message));
 		});
 	}
 
@@ -172,13 +170,7 @@ export default class Modal {
 		labelIll.textContent = 'Перенесені захворювання серцево-судинної системи:'
 		labelIll.append(this.ill)
 
-		this.age = document.createElement('input');
-		this.age.placeholder = 'Вік';
-		this.age.value = age
-		const labelAge = document.createElement('label')
-		labelAge.textContent = 'Вік пацієнта:'
-		labelAge.append(this.age)
-		cardioContainer.append(labelPressure, labelIndexMassa, labelIll, labelAge);
+		cardioContainer.append(labelPressure, labelIndexMassa, labelIll);
 
 		const dentistContainer = document.createElement('div')
 		dentistContainer.className = 'additional-info__item'
@@ -190,20 +182,20 @@ export default class Modal {
 		labelLastVisit.append(this.lastVisit)
 		dentistContainer.append(labelLastVisit);
 
-		const therapistContainer = document.createElement('div')
-		therapistContainer.className = 'additional-info__item'
-		this.ageTherapist = document.createElement('input');
-		this.ageTherapist.placeholder = 'Вік';
-		this.ageTherapist.value = age
-		const labelAgeTherapist = document.createElement('label')
-		labelAgeTherapist.textContent = 'Вік пацієнта:'
-		labelAgeTherapist.append(this.ageTherapist)
-		therapistContainer.append(labelAgeTherapist);
-		dopInfoWrapper.append(cardioContainer, dentistContainer, therapistContainer)
+		const ageContainer = document.createElement('div')
+		ageContainer.className = 'additional-info__item'
+		this.age = document.createElement('input');
+		this.age.placeholder = 'Вік';
+		this.age.value = age
+		const labelAge = document.createElement('label')
+		labelAge.textContent = 'Вік пацієнта:'
+		labelAge.append(this.age)
+		ageContainer.append(labelAge);
+		dopInfoWrapper.append(cardioContainer, dentistContainer, ageContainer)
 		dopInfoWrapper.querySelectorAll('input').forEach(input => {
 			input.required = false
-		}
-	)
+			}
+		)
 		if (doctor === '') {
 			this.selectDoctor.querySelector(`[value='Стоматолог']`).selected = "selected"
 			dentistContainer.classList.add('active')
@@ -213,15 +205,17 @@ export default class Modal {
 			switch (doctor) {
 			case 'Кардіолог':
 					cardioContainer.classList.add('active')
-					cardioContainer.querySelectorAll('input').forEach(input=>input.required = true)
+					cardioContainer.querySelectorAll('input').forEach(input => input.required = true)
+					ageContainer.classList.add('active')
+					ageContainer.querySelectorAll('input').forEach(input=>input.required = true)
 			break;
 			case 'Стоматолог':
 				dentistContainer.classList.add('active')
 				dentistContainer.querySelector('input').required = true;
 			break;
 			case 'Терапевт':
-				therapistContainer.classList.add('active')
-				dentistContainer.querySelector('input').required = true;
+				ageContainer.classList.add('active')
+				ageContainer.querySelector('input').required = true;
 			break;
 			}
 		}
@@ -233,15 +227,17 @@ export default class Modal {
 			switch (this.selectDoctor.value) {
 			case 'Кардіолог':
 					cardioContainer.classList.add('active')
-					cardioContainer.querySelectorAll('input').forEach(input=>input.required = true)
+					cardioContainer.querySelectorAll('input').forEach(input => input.required = true)
+					ageContainer.classList.add('active')
+					ageContainer.querySelectorAll('input').forEach(input=>input.required = true)
 				break;
 				case 'Стоматолог':
 					dentistContainer.classList.add('active')
 					dentistContainer.querySelector('input').required = true;
 				break;
 				case 'Терапевт':
-					therapistContainer.classList.add('active')
-					therapistContainer.querySelector('input').required = true;
+					ageContainer.classList.add('active')
+					ageContainer.querySelector('input').required = true;
 				break;
 		}
 		})
@@ -296,5 +292,4 @@ export default class Modal {
 			btnSubmit,
 		);
 	}
-	
 }
