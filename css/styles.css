@@ -26,7 +26,8 @@ header {
 	background-color: white;
 }
 
-.header-btn, .visit__btn{
+.header-btn,
+.visit__btn {
 	font-weight: 600;
 	padding: 15px 10px;
 	align-self: center;
@@ -103,7 +104,7 @@ input.submit:hover {
 	font-size: 20px;
 	font-weight: 700;
 	font-family: 'Montserrat', sans-serif;
-	text-shadow: -1px 0 #193EA8, 0 1px #193EA8, 1px 0 #193EA8, 0 -1px #193EA8;
+	text-shadow: -1px 0 #193ea8, 0 1px #193ea8, 1px 0 #193ea8, 0 -1px #193ea8;
 	margin-bottom: 4px;
 }
 
@@ -122,7 +123,7 @@ input.submit:hover {
 .inputs-container label {
 	text-align: center;
 	font-size: 13px;
-	color: #193EA8;
+	color: #193ea8;
 	font-weight: 600;
 	font-family: 'Montserrat', sans-serif;
 	text-shadow: -0.7px 0 white, 0 0.7px white, 0.7px 0 white, 0 -0.7px white;
@@ -141,7 +142,7 @@ input.submit:hover {
 	color: white;
 	box-shadow: 10px 10px 15px rgba(70, 70, 70, 0.3);
 }
-.inputs-container input.submit:hover{
+.inputs-container input.submit:hover {
 	background-color: rgba(20, 55, 140, 0.8);
 	box-shadow: inset 10px 10px 15px rgba(70, 70, 70, 0.7);
 }
@@ -150,7 +151,7 @@ input.submit:hover {
 	display: none;
 }
 
-.filter-wrap{
+.filter-wrap {
 	background-color: rgba(101, 235, 183, 0.5);
 	padding-block: 10px;
 	border-bottom: 0.2px solid #cecece;
@@ -177,12 +178,12 @@ input.submit:hover {
 	align-self: center;
 	font-size: 11px;
 	margin-bottom: 5px;
-	color: #193EA8;
+	color: #193ea8;
 	font-weight: 600;
 }
 
-.filter select{
-	color: #193EA8;
+.filter select {
+	color: #193ea8;
 	background-color: white;
 	width: 100%;
 }
@@ -191,17 +192,18 @@ input.submit:hover {
 	font-size: 12px;
 	height: 24px;
 	padding: 0 15px;
-	border: 0.2px solid #193EA8;
+	border: 0.2px solid #193ea8;
 	box-shadow: 5px 5px 7.5px rgba(70, 70, 70, 0.5);
 	border-radius: 5px;
 	cursor: pointer;
-	color: #193EA8;
+	color: #193ea8;
 	background-color: white;
 	font-weight: 600;
 }
 
 #find:hover {
-	box-shadow: inset -5px -5px 7.5px rgba(255, 255, 255, 0.5), inset 5px 5px 7.5px rgba(70, 70, 70, 0.3);
+	box-shadow: inset -5px -5px 7.5px rgba(255, 255, 255, 0.5),
+		inset 5px 5px 7.5px rgba(70, 70, 70, 0.3);
 }
 
 #visit-text {
@@ -209,21 +211,21 @@ input.submit:hover {
 	height: 24px;
 	min-width: 220px;
 	padding-inline: 5px;
-	border: 0.2px solid #193EA8;
+	border: 0.2px solid #193ea8;
 	border-radius: 5px;
 	background-color: white;
 }
 
-#visit-text::placeholder{
-	color: #193EA8;
+#visit-text::placeholder {
+	color: #193ea8;
 }
 
 .filter select {
 	height: 24px;
 	font-size: 11px;
-	border: 0.2px solid #193EA8;
+	border: 0.2px solid #193ea8;
 	border-radius: 5px;
-	color: #193EA8;
+	color: #193ea8;
 }
 
 .cards-container {
@@ -246,7 +248,12 @@ input.submit:hover {
 	font-size: 13px;
 	border: 1px solid #99d6ff;
 	border-radius: 15px;
-	padding: 5px;
+	display: grid;
+	gap: 5px;
+}
+.card span {
+	color: rgba(23, 62, 159, 0.9);
+	font-weight: bold;
 }
 .card-select {
 	height: auto;
@@ -256,25 +263,46 @@ input.submit:hover {
 	border-radius: 15px;
 	padding: 5px;
 }
-.card__main-info{
+.main-info p {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.visit__person {
+	font-size: 15px;
+}
+.visit__text {
+	padding-bottom: 5px;
+	font-weight: bold;
+}
+.card__main-info {
 	display: flex;
-	justify-content:space-between;
+	justify-content: space-between;
 }
 
 .doctor-img {
 	border-radius: 25px;
 	width: 50px;
 	height: 50px;
+	margin: 3px;
 }
-.visit__delete, .visit__edit{
+.visit__delete,
+.visit__edit {
 	height: 20px;
 	width: 20px;
 	cursor: pointer;
 	border-radius: 5px;
 }
 
-.card__show-more, .visit__add-info-cardio, .visit__add-info-dentist, .visit__add-info-therapist{
+.card__show-more,
+.visit__add-info-cardio,
+.visit__add-info-dentist,
+.visit__add-info-therapist {
 	display: none;
+}
+.card__show-more {
+	border: 1px dashed rgba(23, 62, 159, 0.9);
+	border-radius: 8px;
+	padding: 3px;
 }
 
 .active {
