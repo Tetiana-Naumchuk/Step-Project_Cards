@@ -249,7 +249,7 @@ input.submit:hover {
 	padding: 5px;
 }
 .card-select {
-	display: grid;
+	/* display: grid;
 	gap: 20px;
 	font-size: 15px;
 	border: 1px solid #99D6FF;
@@ -258,7 +258,13 @@ input.submit:hover {
 	width: 30%;
 	height: 35%;
 	margin-top: 25px;
-	padding-bottom: 5px;
+	padding-bottom: 5px; */
+	height: auto;
+	min-width: 30%;
+	font-size: 13px;
+	border: 1px solid #99d6ff;
+	border-radius: 15px;
+	padding: 5px;
 }
 .card__main-info{
 	display: flex;
