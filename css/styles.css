@@ -248,7 +248,18 @@ input.submit:hover {
 	border-radius: 15px;
 	padding: 5px;
 }
-
+.card-select {
+	display: grid;
+	gap: 20px;
+	font-size: 15px;
+	border: 1px solid #99D6FF;
+	border-radius: 15px;
+	padding: 10px;
+	width: 30%;
+	height: 35%;
+	margin-top: 25px;
+	padding-bottom: 5px;
+}
 .card__main-info{
 	display: flex;
 	justify-content:space-between;

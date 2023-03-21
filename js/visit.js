@@ -18,6 +18,36 @@ export class Visit {
             showMoreBtn: this.cardWrap.querySelector('.visit__btn'),
             addInfo: this.cardWrap.querySelector('.card__show-more')
         };
+
+        let coordX;
+        let coordY;
+        const dropZone = document.querySelector('.cards-container');
+        this.cardWrap.addEventListener('mousemove',()=>{
+        this.cardWrap.addEventListener('click',()=>{
+                this.cardWrap.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/html', 'dragstart');
+                    coordX = e.offsetX;
+                    coordY = e.offsetY;
+                });
+                dropZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                });
+                dropZone.addEventListener('drop', (e) => {
+                        this.cardWrap.classList.remove('card')
+                        this.cardWrap.classList.add('card-select')
+                        this.cardWrap.style.position = 'absolute';
+                        this.cardWrap.style.top = (e.pageY - coordY) + 'px';
+                        this.cardWrap.style.left = (e.pageX - coordX) + 'px';
+                });
+                    this.cardWrap.addEventListener('dragend ', (e) => {
+                        this.cardWrap.classList.remove('card')
+                        this.cardWrap.classList.add('card-select')
+                        this.cardWrap.style.position = 'absolute';
+                        this.cardWrap.style.top = (e.pageY - coordY) + 'px';
+                        this.cardWrap.style.left = (e.pageX - coordX) + 'px';
+                })
+            })
+        })
     }
     render(parent) {
         const { id, name, doctor, origins, purposeVisit, description } = this.data
