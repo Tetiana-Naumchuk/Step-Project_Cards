@@ -76,5 +76,3 @@ export default class Requests {
 		});
 	}
 }
-
-Requests.delete(156824).then()

@@ -232,7 +232,7 @@ input.submit:hover {
 }
 
 .cards-container {
-	min-height: calc(100vh - 180px);
+	min-height: calc(100vh - 200px);
 	margin: 15px 50px;
 	background: white;
 	border: 0.2px solid #cecece;
