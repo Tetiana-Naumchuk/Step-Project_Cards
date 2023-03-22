@@ -147,7 +147,7 @@ input.submit:hover {
 	background-color: rgba(20, 55, 140, 0.8);
 	box-shadow: inset 10px 10px 15px rgba(70, 70, 70, 0.7);
 }
-.additional-info{
+.additional-info {
 	display: flex;
 	flex-direction: column;
 	row-gap: 8px;
@@ -242,13 +242,14 @@ input.submit:hover {
 	border-radius: 8px;
 	display: flex;
 	flex-wrap: wrap;
-	align-items: flex-start;
 	column-gap: 30px;
 	row-gap: 30px;
 	padding: 30px;
+	justify-content: space-evenly;
+	align-items: flex-start;
 }
 
-.empty{
+.empty {
 	justify-content: center;
 	align-items: center;
 }
@@ -260,6 +261,7 @@ input.submit:hover {
 	border: 1px solid #99d6ff;
 	border-radius: 15px;
 	display: grid;
+	width: 30%;
 	gap: 5px;
 	font-family: 'Montserrat', sans-serif;
 }
@@ -277,11 +279,11 @@ input.submit:hover {
 	gap: 5px;
 	font-family: 'Montserrat', sans-serif;
 }
- 
-.visit__text{
-	font-weight:500;
+
+.visit__text {
+	font-weight: 500;
 }
-.visit__text span{
+.visit__text span {
 	font-weight: bold;
 }
 .card__main-info {
@@ -289,15 +291,13 @@ input.submit:hover {
 	justify-content: space-between;
 }
 
-.card__main-text{
+.card__main-text {
 	display: flex;
-	column-gap: 10px;
-	margin-right: 25px;
 }
-.card__main-text div{
+.card__main-text div {
 	padding-top: 10px;
 }
-.card__main-text .visit__text{
+.card__main-text .visit__text {
 	padding-bottom: 10px;
 }
 .doctor-img {
@@ -308,12 +308,12 @@ input.submit:hover {
 	margin: 3px;
 }
 
-.card__main-imgs{
+.card__main-imgs {
 	position: relative;
 	width: 25px;
 }
 
-.visit__delete{
+.visit__delete {
 	position: absolute;
 	top: 30px;
 	height: 23px;
@@ -321,20 +321,24 @@ input.submit:hover {
 	right: 3px;
 }
 
-.visit__edit{
+.visit__edit {
 	position: absolute;
-	top:0;
+	top: 0;
 	right: 3px;
 	height: 21px;
 	width: 21px;
 }
 
-.visit__delete:hover, .visit__edit:hover{
+.visit__delete:hover,
+.visit__edit:hover {
 	height: 25px;
 	width: 25px;
 }
 
-.card__show-more, .visit__add-info-cardio, .visit__add-info-dentist, .visit__add-info-age{
+.card__show-more,
+.visit__add-info-cardio,
+.visit__add-info-dentist,
+.visit__add-info-age {
 	display: none;
 	width: 100%;
 }
@@ -344,7 +348,7 @@ input.submit:hover {
 	padding: 3px;
 }
 
-.visit__btn{
+.visit__btn {
 	width: 100%;
 }
 
