@@ -51,21 +51,17 @@ export default class Modal {
 			const visit = this._createVisitObject()
 			Requests.post(visit).then(data => {
 				this.formWrap.remove();
-				const renderedVisits = document.querySelectorAll('.card');
-				if (renderedVisits.length === 0) {
-					cardContainer.textContent = 'Записів до лікарів на цей час немає'
-					cardContainer.classList.add('empty')
-				} else {
+				if (cardContainer.classList.contains('empty')) {
 					cardContainer.textContent = ''
 					cardContainer.classList.remove('empty')
-					const { doctor } = data;
-					if (doctor === 'Стоматолог') {
-						new VisitDentist(data).render(cardContainer);
-					} else if (doctor === 'Кардіолог') {
-						new VisitCardiologist(data).render(cardContainer);
-					} else if (doctor === 'Терапевт') {
-						new VisitTherapist(data).render(cardContainer);
-					}
+				}
+				const { doctor } = data;
+				if (doctor === 'Стоматолог') {
+					new VisitDentist(data).render(cardContainer);
+				} else if (doctor === 'Кардіолог') {
+					new VisitCardiologist(data).render(cardContainer);
+				} else if (doctor === 'Терапевт') {
+					new VisitTherapist(data).render(cardContainer);
 				}
 			}).catch(err => alert(err.message));
 		});

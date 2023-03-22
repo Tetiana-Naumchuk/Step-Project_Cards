@@ -77,6 +77,7 @@ export class Visit {
                     const renderedVisits = document.querySelectorAll('.card');
                     if (renderedVisits.length === 0) {
                         cardContainer.textContent = 'Записів до лікарів на цей час немає'
+                        cardContainer.classList.add('empty')
                     }
                 } else {
                     throw new Error("Наразі неможливо видалення запису")
