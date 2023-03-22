@@ -257,6 +257,7 @@ input.submit:hover {
 .card {
 	padding: 5px;
 	height: auto;
+	width: 30%;
 	font-size: 13px;
 	border: 1px solid #99d6ff;
 	border-radius: 15px;
@@ -272,6 +273,7 @@ input.submit:hover {
 
 .card-select {
 	height: auto;
+	width: 30%;
 	font-size: 13px;
 	border: 1px solid #99d6ff;
 	border-radius: 15px;
