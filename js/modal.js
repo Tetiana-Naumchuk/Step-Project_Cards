@@ -51,6 +51,9 @@ export default class Modal {
 			const visit = this._createVisitObject()
 			Requests.post(visit).then(data => {
 				this.formWrap.remove();
+				if (cardContainer.textContent === 'Записів до лікарів на цей час немає') {
+					cardContainer.textContent = ''
+				}
 				const { doctor } = data;
 				if (doctor === 'Стоматолог') {
 					new VisitDentist(data).render(cardContainer);

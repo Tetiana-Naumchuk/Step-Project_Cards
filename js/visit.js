@@ -155,7 +155,6 @@ export class VisitTherapist extends Visit {
 export class Cards{
     renderAll() {
         Requests.get().then(cardsArray => {
-        console.log(cardsArray);
         if (cardsArray.length === 0) {
             cardContainer.textContent = 'Записів до лікарів на цей час немає'
         } else {            
