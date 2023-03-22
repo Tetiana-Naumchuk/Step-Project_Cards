@@ -256,7 +256,6 @@ input.submit:hover {
 .card {
 	padding: 5px;
 	height: auto;
-	width: 25vw;
 	font-size: 13px;
 	border: 1px solid #99d6ff;
 	border-radius: 15px;
@@ -271,7 +270,6 @@ input.submit:hover {
 
 .card-select {
 	height: auto;
-	width: 25vw;
 	font-size: 13px;
 	border: 1px solid #99d6ff;
 	border-radius: 15px;
@@ -289,12 +287,12 @@ input.submit:hover {
 .card__main-info {
 	display: flex;
 	justify-content: space-between;
-	position: relative;
 }
 
 .card__main-text{
 	display: flex;
 	column-gap: 10px;
+	margin-right: 25px;
 }
 .card__main-text div{
 	padding-top: 10px;
@@ -309,22 +307,26 @@ input.submit:hover {
 	height: 50px;
 	margin: 3px;
 }
-.visit__delete,
-.visit__edit {
-	cursor: pointer;
-	position: absolute;
-	right: 0;
+
+.card__main-imgs{
+	position: relative;
+	width: 25px;
 }
+
 .visit__delete{
+	position: absolute;
+	top: 30px;
 	height: 23px;
 	width: 23px;
-	top: 30px;
+	right: 3px;
 }
 
 .visit__edit{
+	position: absolute;
+	top:0;
+	right: 3px;
 	height: 21px;
 	width: 21px;
-	top: 0px;
 }
 
 .visit__delete:hover, .visit__edit:hover{

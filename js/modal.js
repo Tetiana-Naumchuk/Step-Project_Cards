@@ -12,7 +12,7 @@ export default class Modal {
 		this.formWrap = formEnterTemplate.querySelector('.form').cloneNode(true);
 		this.form = this.formWrap.querySelector('form');
 		this.inputsContainer = this.formWrap.querySelector('.inputs-container');
-		this.formWrap.addEventListener('click', event => {
+		this.formWrap.addEventListener('mousedown', event => {
 			if (
 				event.target.classList.contains('form') ||
 				event.target.classList.contains('close-form')
