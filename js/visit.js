@@ -1,5 +1,5 @@
 import Requests from './Requests.js';
-import { cardContainer } from './Modal.js';
+import { cardContainer} from './Modal.js';
 import Modal from './Modal.js';
 
 export class Visit {
@@ -95,6 +95,7 @@ export class Visit {
         })
         parent.append(this.cardWrap);
     }
+    
 }
 
 
@@ -111,7 +112,7 @@ export class VisitCardiologist extends Visit {
     render(parent) {
         super.render(parent);
         const {pressure, indexMassa, ill, age} = this.data
-        this.cardWrap.style.backgroundColor = '#B9C4F7';
+        this.cardWrap.style.backgroundColor = 'rgba(205, 210, 497, 0.5)';
         this.elem.pressure.textContent = pressure;
         this.elem.indexMassa.textContent = indexMassa;
         this.elem.ill.textContent = ill;
@@ -130,7 +131,7 @@ export class VisitDentist extends Visit {
     render(parent) {
         super.render(parent);
         const {lastVisit} = this.data
-        this.cardWrap.style.backgroundColor = '#B3FFB3';
+        this.cardWrap.style.backgroundColor = 'rgba(101, 235, 183, 0.5)';
         this.elem.lastVisit.textContent = lastVisit;
         this.elem.dentistContainer.classList.add('active')
     }
@@ -146,7 +147,7 @@ export class VisitTherapist extends Visit {
     render(parent) {
         super.render(parent);
         const {age} = this.data
-        this.cardWrap.style.backgroundColor = '#CCFFFF';
+        this.cardWrap.style.backgroundColor = 'rgba(39, 170, 219, 0.5)';
         this.elem.age.textContent = age;
         this.elem.ageContainer.classList.add('active')
     }
@@ -157,8 +158,10 @@ export class Cards{
         Requests.get().then(cardsArray => {
         if (cardsArray.length === 0) {
             cardContainer.textContent = 'Записів до лікарів на цей час немає'
-        } else {            
+            cardContainer.classList.add('empty')
+		} else {            
             cardContainer.textContent = ''
+            cardContainer.classList.remove('empty')
             cardsArray.forEach(card => {
                 const { doctor } = card
                 if (doctor === 'Стоматолог') {

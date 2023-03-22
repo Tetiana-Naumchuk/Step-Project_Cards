@@ -65,7 +65,8 @@ input.submit:hover {
 	box-shadow: rgba(0, 0, 0, 0.2) 0 12px 28px 0;
 	border-radius: 8px;
 	width: 450px;
-	padding: 20px;
+	padding-top: 15px;
+	padding-inline: 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -79,8 +80,7 @@ input.submit:hover {
 	height: 20px;
 	width: 20px;
 	cursor: pointer;
-	right: 0;
-	margin-right: 15px;
+	right: 15px;
 	border: 1px solid#193EA8;
 	border-radius: 5px;
 }
@@ -92,10 +92,10 @@ input.submit:hover {
 }
 .inputs-container {
 	width: 100%;
-	margin: 15px;
+	margin: 10px;
 	display: flex;
 	flex-direction: column;
-	row-gap: 10px;
+	row-gap: 8px;
 }
 
 .inputs-container h3 {
@@ -106,6 +106,7 @@ input.submit:hover {
 	font-family: 'Montserrat', sans-serif;
 	text-shadow: -1px 0 #193ea8, 0 1px #193ea8, 1px 0 #193ea8, 0 -1px #193ea8;
 	margin-bottom: 4px;
+	margin-inline: 15px;
 }
 
 .inputs-container input,
@@ -149,7 +150,7 @@ input.submit:hover {
 .additional-info{
 	display: flex;
 	flex-direction: column;
-	row-gap: 10px;
+	row-gap: 8px;
 }
 
 .additional-info__item {
@@ -247,44 +248,62 @@ input.submit:hover {
 	padding: 30px;
 }
 
+.empty{
+	justify-content: center;
+	align-items: center;
+}
+
 .card {
+	padding: 5px;
 	height: auto;
-	min-width: 30%;
+	width: 25vw;
 	font-size: 13px;
 	border: 1px solid #99d6ff;
 	border-radius: 15px;
 	display: grid;
 	gap: 5px;
+	font-family: 'Montserrat', sans-serif;
 }
 .card span {
 	color: rgba(23, 62, 159, 0.9);
 	font-weight: bold;
 }
+
 .card-select {
 	height: auto;
-	min-width: 30%;
+	width: 25vw;
 	font-size: 13px;
 	border: 1px solid #99d6ff;
 	border-radius: 15px;
-	padding: 5px;
+	display: grid;
+	gap: 5px;
+	font-family: 'Montserrat', sans-serif;
 }
-.main-info p {
-	padding-top: 10px;
-	padding-bottom: 10px;
+ 
+.visit__text{
+	font-weight:500;
 }
-.visit__person {
-	font-size: 15px;
-}
-.visit__text {
-	padding-bottom: 5px;
+.visit__text span{
 	font-weight: bold;
 }
 .card__main-info {
 	display: flex;
 	justify-content: space-between;
+	position: relative;
 }
 
+.card__main-text{
+	display: flex;
+	column-gap: 10px;
+}
+.card__main-text div{
+	padding-top: 10px;
+}
+.card__main-text .visit__text{
+	padding-bottom: 10px;
+}
 .doctor-img {
+	display: block;
 	border-radius: 25px;
 	width: 50px;
 	height: 50px;
@@ -292,14 +311,30 @@ input.submit:hover {
 }
 .visit__delete,
 .visit__edit {
-	height: 20px;
-	width: 20px;
 	cursor: pointer;
-	border-radius: 5px;
+	position: absolute;
+	right: 0;
+}
+.visit__delete{
+	height: 23px;
+	width: 23px;
+	top: 30px;
+}
+
+.visit__edit{
+	height: 21px;
+	width: 21px;
+	top: 0px;
+}
+
+.visit__delete:hover, .visit__edit:hover{
+	height: 25px;
+	width: 25px;
 }
 
 .card__show-more, .visit__add-info-cardio, .visit__add-info-dentist, .visit__add-info-age{
 	display: none;
+	width: 100%;
 }
 .card__show-more {
 	border: 1px dashed rgba(23, 62, 159, 0.9);
@@ -307,8 +342,12 @@ input.submit:hover {
 	padding: 3px;
 }
 
+.visit__btn{
+	width: 100%;
+}
+
 .active {
 	display: flex;
 	flex-direction: column;
-	row-gap: 10px;
+	row-gap: 8px;
 }

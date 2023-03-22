@@ -13,11 +13,11 @@ export default class Filter{
         const newFilter = {}
         for (let key in this.myfilter) {
             if (this.myfilter[key] !== '') {
-                newFilter[key] = this.myfilter[key]
+                newFilter[key] = this.myfilter[key].toLowerCase()
             }
         }
-        const cardsCollection = document.getElementsByClassName('card')
-        Array.from(cardsCollection).forEach(card => {
+        const renderedVisits = document.querySelectorAll('.card');
+        renderedVisits.forEach(card => {
             let cardCheck = 0
             if (Object.keys(newFilter).length === 0) {
                     card.style.display = 'block'
@@ -25,7 +25,7 @@ export default class Filter{
                 for (let key in newFilter) {
                     let cardString = ''
                     card.querySelectorAll(`[name="${key}"]`).forEach(elem => {
-                        cardString += (elem.textContent + " ")
+                        cardString += (elem.textContent.toLowerCase() + " ")
                     })
                     if (cardString.includes(newFilter[key])) {
                             cardCheck++

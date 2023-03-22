@@ -51,16 +51,21 @@ export default class Modal {
 			const visit = this._createVisitObject()
 			Requests.post(visit).then(data => {
 				this.formWrap.remove();
-				if (cardContainer.textContent === 'Записів до лікарів на цей час немає') {
+				const renderedVisits = document.querySelectorAll('.card');
+				if (renderedVisits.length === 0) {
+					cardContainer.textContent = 'Записів до лікарів на цей час немає'
+					cardContainer.classList.add('empty')
+				} else {
 					cardContainer.textContent = ''
-				}
-				const { doctor } = data;
-				if (doctor === 'Стоматолог') {
-					new VisitDentist(data).render(cardContainer);
-				} else if (doctor === 'Кардіолог') {
-					new VisitCardiologist(data).render(cardContainer);
-				} else if (doctor === 'Терапевт') {
-					new VisitTherapist(data).render(cardContainer);
+					cardContainer.classList.remove('empty')
+					const { doctor } = data;
+					if (doctor === 'Стоматолог') {
+						new VisitDentist(data).render(cardContainer);
+					} else if (doctor === 'Кардіолог') {
+						new VisitCardiologist(data).render(cardContainer);
+					} else if (doctor === 'Терапевт') {
+						new VisitTherapist(data).render(cardContainer);
+					}
 				}
 			}).catch(err => alert(err.message));
 		});
@@ -86,14 +91,14 @@ export default class Modal {
 				}
 				if (doctor === 'Стоматолог') {
 					cardForEdit.querySelector('.visit__add-info-dentist').classList.add('active')
-					cardForEdit.style.backgroundColor = '#B3FFB3';
+					cardForEdit.style.backgroundColor = 'rgba(101, 235, 183, 0.5)';
 				} else if (doctor === 'Кардіолог') {
 					cardForEdit.querySelector('.visit__add-info-cardio').classList.add('active')
 					cardForEdit.querySelector('.visit__add-info-age').classList.add('active')
-					cardForEdit.style.backgroundColor = '#CDD2F7'
+					cardForEdit.style.backgroundColor = 'rgba(205, 210, 497, 0.5)'
 				} else if (doctor === 'Терапевт') {
 					cardForEdit.querySelector('.visit__add-info-age').classList.add('active')
-					cardForEdit.style.backgroundColor = '#CCFFFF'
+					cardForEdit.style.backgroundColor = 'rgba(39, 170, 219, 0.5)'
 				}
 				new Filter().makeFilter()
 			}).catch(err => alert(err.message));
