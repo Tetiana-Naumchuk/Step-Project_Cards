@@ -295,6 +295,8 @@ input.submit:hover {
 
 .card__main-text {
 	display: flex;
+	margin-right: 25px;
+	column-gap: 5px;
 }
 .card__main-text div {
 	padding-top: 10px;
